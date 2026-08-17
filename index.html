@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les serveurs / DevOps | Cours</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg2: #f6f6f7;
+    --bg3: #e2e2e3;
+    --text: #1a1a1a;
+    --text2: #555;
+    --accent: #3b82f6;
+    --accent-light: #dbeafe;
+    --border: #e5e7eb;
+    --nav-bg: #ffffffee;
+    --card-bg: #ffffff;
+    --shadow: 0 2px 12px rgba(0,0,0,.07);
+    --tag-bg: #e0f2fe;
+    --tag-color: #0369a1;
+    --new-bg: #dcfce7;
+    --new-color: #166534;
+    --sidebar-w: 270px;
+  }
+  [data-theme="dark"] {
+    --bg: #1b1b1f;
+    --bg2: #27272a;
+    --bg3: #3f3f46;
+    --text: #ebebeb;
+    --text2: #a1a1aa;
+    --accent: #60a5fa;
+    --accent-light: #1e3a5f;
+    --border: #3f3f46;
+    --nav-bg: #1b1b1fee;
+    --card-bg: #27272a;
+    --shadow: 0 2px 12px rgba(0,0,0,.3);
+    --tag-bg: #1e3a5f;
+    --tag-color: #93c5fd;
+    --new-bg: #14532d;
+    --new-color: #86efac;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    transition: background .2s, color .2s;
+  }
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    height: 60px;
+  }
+  .nav-brand { font-weight: 700; font-size: 1.15rem; color: var(--accent); text-decoration: none; flex-shrink: 0; }
+  .layout { display: flex; max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; gap: 2.5rem; }
+  aside { width: 270px; flex-shrink: 0; position: sticky; top: 80px; }
+  main { flex: 1; min-width: 0; }
+  h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+  h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.25rem; padding-bottom: .5rem; border-bottom: 2px solid var(--border); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: .35rem; }
+  .tag { display: inline-block; font-size: .7rem; padding: .15rem .5rem; border-radius: 20px; background: #e0f2fe; color: #0369a1; font-weight: 600; }
+  .tag.new { background: #dcfce7; color: #166534; }
+  .tag.tp { background: #fef3c7; color: #92400e; }
+  .link-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+  .link-list li a { display: flex; align-items: center; gap: .5rem; padding: .55rem .9rem; border-radius: 8px; text-decoration: none; color: var(--text); font-size: .9rem; background: var(--bg2); border: 1px solid var(--border); }
+  .tp-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; counter-reset: tp; }
+  .tp-list li { counter-increment: tp; }
+  .tp-list li a { display: flex; align-items: center; gap: .75rem; padding: .65rem 1rem; border-radius: 8px; text-decoration: none; color: var(--text); font-size: .9rem; background: var(--bg2); border: 1px solid var(--border); }
+  .callout { background: #dbeafe; border-left: 4px solid #3b82f6; border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin: 1.5rem 0; font-size: .9rem; }
+  section { margin-bottom: 3rem; }
+  footer { text-align: center; padding: 2rem; font-size: .8rem; color: var(--text2); border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+<nav><a href="#" class="nav-brand">&#128218; Cours</a></nav>
+<div class="layout">
+<aside><nav><a href="#intro">Introduction</a><br><a href="#supports">Supports</a><br><a href="#tp-debian">TP Debian</a><br><a href="#cicd">CI/CD</a></nav></aside>
+<main>
+<div id="intro"><h1>Les serveurs / DevOps</h1><p>Connaître le fonctionnement des serveurs est indispensable pour comprendre le fonctionnement des applications.</p></div>
+<section id="par-ou-commencer"><h2>Par où commencer ?</h2><div class="callout"><strong>Conseil :</strong> Si vous débutez, suivez les TP dans l'ordre : le serveur, puis Docker, puis l'intégration continue.</div></section>
+<section id="supports"><h2>Supports de cours</h2><div class="cards">
+<a href="#" class="card"><div>Cours sur les serveurs</div><div class="tag">Cours</div></a>
+<a href="#" class="card"><div>Docker</div><div class="tag">Cours</div></a>
+<a href="#" class="card"><div>CI/CD</div><div class="tag">Cours</div></a>
+<a href="#" class="card"><div>Gitlab CI</div><div class="tag">Cours</div></a>
+</div></section>
+<section id="tp-debian"><h2>Les TP Debian</h2><ul class="tp-list">
+<li><a href="#">TP 1 — Créer une VM sur la ferme</a></li>
+<li><a href="#">TP 1b — Première installation d'une VM</a></li>
+<li><a href="#">TP 1c — Prendre en main la ligne de commande</a></li>
+<li><a href="#">TP 2 — Configurer un serveur Web</a></li>
+<li><a href="#">TP 3 — Configurer un serveur de base de données</a></li>
+<li><a href="#">TP 4 — Déployer son code sur un serveur</a></li>
+<li><a href="#">TP 5 — Créer un serveur Web &amp; BDD</a></li>
+</ul></section>
+<section id="cicd"><h2>CI/CD</h2><div class="cards">
+<a href="#" class="card"><div>Déployer en continu</div><div class="tag tp">TP</div></a>
+<a href="#" class="card"><div>Packager avec Docker</div><div class="tag tp">TP</div></a>
+<a href="#" class="card"><div>Déploiement avec Kamal</div><div class="tag tp">TP</div><div class="tag new">2025+</div></a>
+<a href="#" class="card"><div>GitHub Actions</div><div class="tag tp">TP</div><div class="tag new">Nouveau</div></a>
+</div></section>
+</main></div>
+<footer>Mise à jour : août 2026 · Cours BTS SIO</footer>
+</body></html>
