@@ -1,0 +1,48 @@
+title: "Serveurs / DevOps — BTS SIO"
+description: "Ressources pédagogiques BTS SIO SISR — Cours, guides et TP"
+url: "https://ggaillard.github.io"
+baseurl: "/cours-devops"
+
+remote_theme: just-the-docs/just-the-docs@v0.10.0
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+
+# ── Just the Docs settings ──────────────────────────────────────────
+color_scheme: light
+search_enabled: true
+search_tokenizer_separator: /[\s\-/]+/
+heading_anchors: true
+back_to_top: true
+back_to_top_text: "Haut de page"
+footer_content: >
+  Contenu pédagogique BTS SIO &nbsp;·&nbsp; Mise à jour août 2026 &nbsp;·&nbsp;
+  <a href="https://github.com/ggaillard/cours-devops">Contribuer sur GitHub</a>
+
+aux_links:
+  "GitHub ↗":
+    - "https://github.com/ggaillard/cours-devops"
+
+aux_links_new_tab: true
+
+nav_sort: order   # tri par nav_order
+
+# ── Callouts ────────────────────────────────────────────────────────
+callouts:
+  tip:
+    title: "💡 Conseil"
+    color: green
+  warning:
+    title: "⚠️ Attention"
+    color: yellow
+  prerequis:
+    title: "🎓 Prérequis"
+    color: blue
+
+# ── Exclude ─────────────────────────────────────────────────────────
+exclude:
+  - "*.sh"
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
