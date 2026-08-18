@@ -1,4 +1,4 @@
-# Cours DevOps — 100 % en ligne, centré GitHub
+# Cours DevOps — 
 
 [![Deploy](https://github.com/ggaillard/cours-devops/actions/workflows/deploy.yml/badge.svg)](https://github.com/ggaillard/cours-devops/actions/workflows/deploy.yml)
 [![CI](https://github.com/ggaillard/cours-devops/actions/workflows/ci.yml/badge.svg)](https://github.com/ggaillard/cours-devops/actions/workflows/ci.yml)
