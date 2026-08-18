@@ -1,0 +1,48 @@
+name: CI — Vérifier le site
+
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verifier:
+    name: Construire et vérifier
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Construire le site (échoue sur lien mort)
+        run: npm run docs:build
+
+      - name: Vérifier le formatage des fichiers YAML
+        run: |
+          for f in .github/workflows/*.yml .github/dependabot.yml; do
+            python3 -c "import sys,yaml; yaml.safe_load(open('$f'))" && echo "✔ $f"
+          done
+
+      - name: Publier l'artefact de build
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-${{ github.sha }}
+          path: docs/.vitepress/dist
+          retention-days: 7

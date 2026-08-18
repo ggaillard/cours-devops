@@ -1,0 +1,45 @@
+name: Erreur ou imprécision dans le cours
+description: Signaler une faute, un lien mort, une commande qui ne fonctionne pas
+title: "[Contenu] "
+labels: ["contenu", "à trier"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de signaler le problème. Plus la description est précise, plus la correction est rapide.
+
+  - type: input
+    id: page
+    attributes:
+      label: Page concernée
+      description: URL ou chemin du fichier
+      placeholder: /actions/premier-workflow ou docs/actions/premier-workflow.md
+    validations:
+      required: true
+
+  - type: dropdown
+    id: nature
+    attributes:
+      label: Nature du problème
+      options:
+        - Faute d'orthographe ou de formulation
+        - Lien mort ou navigation cassée
+        - Commande / extrait de code qui ne fonctionne pas
+        - Information obsolète (interface GitHub modifiée)
+        - Explication incomplète ou ambiguë
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Ce qui est écrit, et ce qui devrait l'être
+    validations:
+      required: true
+
+  - type: textarea
+    id: contexte
+    attributes:
+      label: Contexte (facultatif)
+      description: Navigateur, message d'erreur, capture décran…

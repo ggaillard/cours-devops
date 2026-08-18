@@ -7,11 +7,14 @@ export default defineConfig({
   description: 'Cours DevOps 100 % en ligne, centré GitHub — CI/CD, conteneurs, DevSecOps, sans installation locale.',
 
   // Nécessaire pour un site « projet » GitHub Pages : https://ggaillard.github.io/cours-devops/
-  base: '/cours-devops/',
+  // Surchargeable via DOCS_BASE=/ pour servir le site à la racine (image conteneur).
+  base: process.env.DOCS_BASE || '/cours-devops/',
 
   lastUpdated: true,
   cleanUrls: false,
-  ignoreDeadLinks: true,
+
+  // Un lien mort doit faire échouer la CI : c'est le principe même du cours.
+  ignoreDeadLinks: false,
 
   head: [
     ['meta', { name: 'theme-color', content: '#3e80af' }],

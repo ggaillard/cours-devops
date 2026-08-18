@@ -1,0 +1,43 @@
+name: Proposition de contenu
+description: Suggérer une nouvelle page, un nouveau TP ou une amélioration pédagogique
+title: "[Proposition] "
+labels: ["amélioration", "à trier"]
+body:
+  - type: input
+    id: sujet
+    attributes:
+      label: Sujet proposé
+      placeholder: "Ex. : une page sur les environnements et les approbations de déploiement"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: section
+    attributes:
+      label: Section de rattachement
+      options:
+        - Introduction
+        - Git & GitHub
+        - Codespaces
+        - GitHub Actions
+        - GitHub Pages
+        - Conteneurs (GHCR)
+        - DevSecOps
+        - Déploiement
+        - TP
+        - Nouvelle section
+    validations:
+      required: true
+
+  - type: textarea
+    id: objectif
+    attributes:
+      label: Objectif pédagogique
+      description: Que doit savoir faire l'étudiant après avoir lu cette page ?
+    validations:
+      required: true
+
+  - type: textarea
+    id: contenu
+    attributes:
+      label: Plan ou contenu envisagé

@@ -1,0 +1,60 @@
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+(CC BY-NC-SA 4.0)
+
+Copyright (c) 2026 ggaillard
+
+Ce contenu pédagogique est mis à disposition selon les termes de la licence
+Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans
+les Mêmes Conditions 4.0 International.
+
+Résumé (ce résumé n'a pas valeur juridique) :
+
+  Vous êtes autorisé à :
+    - Partager  : copier, distribuer et communiquer le matériel par tous
+                  moyens et sous tous formats.
+    - Adapter   : remixer, transformer et créer à partir du matériel.
+
+  Selon les conditions suivantes :
+    - Attribution        : vous devez créditer l'œuvre, intégrer un lien
+                           vers la licence et indiquer si des modifications
+                           ont été effectuées.
+    - Pas d'Utilisation
+      Commerciale        : vous n'êtes pas autorisé à faire un usage
+                           commercial de cette œuvre.
+    - Partage dans les
+      Mêmes Conditions   : si vous modifiez ou adaptez cette œuvre, vous
+                           devez diffuser l'œuvre modifiée sous la même
+                           licence.
+
+Texte juridique complet :
+https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.fr
+
+Résumé officiel :
+https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr
+
+--------------------------------------------------------------------------
+Exception : les extraits de code, fichiers de configuration et workflows
+GitHub Actions contenus dans ce dépôt (répertoires .github/, .devcontainer/
+et le Dockerfile) sont fournis sous licence MIT, afin de pouvoir être
+réutilisés librement par les étudiants dans leurs propres projets, y
+compris professionnels.
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

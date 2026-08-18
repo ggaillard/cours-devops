@@ -4,3 +4,12 @@ docs/.vitepress/cache/
 *.log
 .DS_Store
 .env
+
+# Ancien cours Jekyll : conservé hors dépôt.
+# L'historique complet reste accessible via la branche archive/jekyll-sisr
+# et le tag v0-jekyll-sisr.
+_archive-jekyll/
+
+# Dossiers de travail locaux
+_to_delete/
+AUDIT.md

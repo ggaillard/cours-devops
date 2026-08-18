@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question sur le cours
+    url: https://github.com/ggaillard/cours-devops/discussions
+    about: Pour une question pédagogique, utilisez les Discussions plutôt qu'une Issue.
+  - name: Documentation GitHub Actions
+    url: https://docs.github.com/actions
+    about: La référence officielle pour les workflows.

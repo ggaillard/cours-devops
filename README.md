@@ -1,6 +1,9 @@
 # Cours DevOps — 100 % en ligne, centré GitHub
 
-![Deploy](https://github.com/ggaillard/cours-devops/actions/workflows/deploy.yml/badge.svg)
+[![Deploy](https://github.com/ggaillard/cours-devops/actions/workflows/deploy.yml/badge.svg)](https://github.com/ggaillard/cours-devops/actions/workflows/deploy.yml)
+[![CI](https://github.com/ggaillard/cours-devops/actions/workflows/ci.yml/badge.svg)](https://github.com/ggaillard/cours-devops/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/ggaillard/cours-devops/actions/workflows/codeql.yml/badge.svg)](https://github.com/ggaillard/cours-devops/actions/workflows/codeql.yml)
+[![Licence: CC BY-NC-SA 4.0](https://img.shields.io/badge/licence-CC%20BY--NC--SA%204.0-lightgrey.svg)](LICENSE)
 
 Cours DevOps **sans installation locale** : tout se fait dans le navigateur et sur GitHub.
 Site en ligne : **https://ggaillard.github.io/cours-devops/**
@@ -19,27 +22,73 @@ Site en ligne : **https://ggaillard.github.io/cours-devops/**
 | Déploiement | CD vers un service en ligne + stratégies |
 | TP | 3 travaux pratiques transversaux |
 
+## Le dépôt est lui-même le support du cours
+
+Chaque notion enseignée est appliquée ici, et l'étudiant peut lire le fichier correspondant :
+
+| Notion enseignée | Où la voir en vrai |
+| --- | --- |
+| Dev Container | [`.devcontainer/devcontainer.json`](.devcontainer/devcontainer.json) |
+| Intégration continue | [`.github/workflows/ci.yml`](.github/workflows/ci.yml) |
+| Déploiement continu | [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) |
+| Image conteneur + GHCR | [`Dockerfile`](Dockerfile) · [`.github/workflows/ghcr.yml`](.github/workflows/ghcr.yml) |
+| Analyse CodeQL | [`.github/workflows/codeql.yml`](.github/workflows/codeql.yml) |
+| Dependabot | [`.github/dependabot.yml`](.github/dependabot.yml) |
+| Gabarits Issues / PR | [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE) · [`.github/pull_request_template.md`](.github/pull_request_template.md) |
+
 ## Technologie
 
 Site généré avec [VitePress](https://vitepress.dev), déployé par **GitHub Actions** sur **GitHub Pages**.
-Le site est donc lui-même une démonstration du cours.
+
+## Contribuer
+
+1. Créez une branche (`docs/…`, `fix/…`, `feat/…`) — jamais de commit direct sur `main`.
+2. Vérifiez que le site se construit : `npm run docs:build` (un **lien mort fait échouer la CI**).
+3. Ouvrez une Pull Request : la CI se déclenche automatiquement.
+
+Toute nouvelle page doit être référencée dans la `sidebar` de `docs/.vitepress/config.mjs`.
 
 ## Développement local (optionnel)
 
-Le cours n'exige aucune installation. Pour prévisualiser le site en local malgré tout :
+Le cours n'exige aucune installation. Le plus simple est d'ouvrir un **Codespace** :
+le Dev Container installe tout et lance `npm ci` automatiquement.
+
+Pour prévisualiser le site sur sa propre machine :
 
 ```bash
-npm install
-npm run docs:dev      # serveur de développement
-npm run docs:build    # construction de production
+npm ci
+npm run docs:dev      # serveur de développement (http://localhost:5173)
+npm run docs:build    # construction de production + vérification des liens
 npm run docs:preview  # prévisualiser la build
 ```
 
+## Exécuter le site en conteneur
+
+```bash
+docker run --rm -p 8080:80 ghcr.io/ggaillard/cours-devops:main
+```
+
+Dans l'image, le site est servi à la racine (`DOCS_BASE=/`) ; sur Pages il est servi
+sous `/cours-devops/`. C'est la variable `DOCS_BASE` qui fait la différence.
+
 ## Déploiement
 
-Chaque push sur `main` déclenche le workflow `.github/workflows/deploy.yml` qui construit
-et publie le site. Activez **Settings → Pages → Source → GitHub Actions**.
+Chaque push sur `main` déclenche `.github/workflows/deploy.yml`, qui construit et publie le site.
+
+Prérequis côté dépôt (à faire une fois) :
+
+- **Settings → Pages → Source → GitHub Actions**
+- **Settings → Code security** → Dependabot alerts, Dependabot security updates,
+  CodeQL, Secret scanning + **Push protection**
+- **Settings → Branches** → règle de protection sur `main` (PR obligatoire, CI verte)
+
+## Historique
+
+L'ancienne version Jekyll de ce cours (Linux, Docker, GitLab CI — orientée SISR) reste
+consultable sur la branche `archive/jekyll-sisr` et le tag `v0-jekyll-sisr`.
 
 ## Licence
 
-Contenu pédagogique — réutilisable dans un cadre éducatif.
+Contenu pédagogique sous [CC BY-NC-SA 4.0](LICENSE).
+Les exemples de code, workflows et configurations sont sous licence MIT, pour être
+librement réutilisables par les étudiants.
