@@ -1,5 +1,17 @@
 # Les bases de Git
 
+::: info 🎯 Séance 2 (2/2) · ~1 h 30
+À la fin de cette séance, vous savez :
+
+- créer des commits depuis le navigateur et lire un diff ;
+- rédiger un message de commit conforme à une convention d'équipe ;
+- protéger un dépôt des fichiers qui ne doivent jamais y entrer.
+
+**Prérequis :** un dépôt public créé en séance 1
+
+**Livrable attendu :** au moins trois commits aux messages conventionnels, un `.gitignore` et un README renseigné
+:::
+
 On va créer des commits **entièrement dans le navigateur**, sans installer Git.
 
 ## Créer un commit depuis l'interface web
@@ -71,5 +83,29 @@ Il s'écrit en **Markdown**, une syntaxe simple :
 **gras**, *italique*, `code`
 [un lien](https://example.com)
 ```
+
+---
+
+## Auto-évaluation
+
+Répondez de mémoire avant de déplier la correction.
+
+::: details 1. Pourquoi écrire `feat: ajoute la page de connexion` plutôt que `modifs` ?
+Parce que l'historique est lu bien plus souvent qu'il n'est écrit : pour retrouver l'origine d'un bug, préparer une note de version ou comprendre le projet six mois plus tard. Un préfixe normalisé permet en outre de générer automatiquement un journal des changements.
+:::
+
+::: details 2. Un mot de passe commité par erreur puis supprimé au commit suivant est-il en sécurité ?
+Non. Il reste accessible dans l'historique, et tout clone en possède une copie. La seule réponse correcte est de **révoquer** le secret auprès de son fournisseur et d'en générer un nouveau — le retirer du code ne suffit jamais.
+:::
+
+::: details 3. Que met-on dans un `.gitignore` sur un projet applicatif ?
+Ce qui est régénérable ou personnel : `node_modules/`, les dossiers de build (`dist/`), les journaux, et surtout les fichiers de configuration locale contenant des secrets (`.env`).
+:::
+
+**Critères de réussite de la séance**
+
+- ☐ les messages de commit suivent la convention `type: résumé à l'impératif`
+- ☐ le `.gitignore` couvre au minimum les dépendances, les builds et les secrets
+- ☐ je sais lire un diff et distinguer une ligne ajoutée d'une ligne supprimée
 
 Vous maîtrisez les bases. Passons à la collaboration : [Branches & Pull Requests](/git-github/branches-pr).

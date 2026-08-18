@@ -1,5 +1,17 @@
 # TP 2 — Publier un site sur Pages
 
+::: info 🎯 Séance 13 · 2 h
+À la fin de cette séance, vous savez :
+
+- publier un site statique en ligne via Actions et Pages ;
+- vérifier concrètement le caractère continu du déploiement ;
+- diagnostiquer un déploiement qui n'aboutit pas.
+
+**Prérequis :** [Déployer un site statique](/pages/deployer-site)
+
+**Livrable attendu :** URL publique du site et deux déploiements réussis visibles dans Actions
+:::
+
 **Objectif** : publier un site statique et le mettre à jour **automatiquement** à chaque commit, via GitHub Actions et GitHub Pages.
 
 **Prérequis** : [GitHub Actions](/actions/) et [GitHub Pages](/pages/).
@@ -99,5 +111,28 @@ C'est le **déploiement continu** : le code validé arrive en ligne sans action 
 
 - Remplacez le HTML pur par un générateur (VitePress, Hugo) : ajoutez une étape `npm run build` et publiez le dossier de sortie (voir [Déployer un site statique](/pages/deployer-site)).
 - Ajoutez un **domaine personnalisé** (fichier `CNAME`).
+
+---
+
+## Auto-évaluation
+
+Répondez de mémoire avant de déplier la correction.
+
+::: details 1. Le workflow est vert mais l'URL renvoie une 404. Que vérifier ?
+Que la source de Pages est bien réglée sur **GitHub Actions** (et non « Deploy from a branch »), puis que le chemin publié comme artefact contient bien un `index.html` à sa racine.
+:::
+
+::: details 2. Ici `path: .` publie la racine. Que faudrait-il avec un générateur de site ?
+Le dossier de sortie de la construction : `dist` pour Vite, `public` pour Hugo, `docs/.vitepress/dist` pour VitePress — et il faut ajouter l'étape de build avant la publication.
+:::
+
+::: details 3. En quoi l'étape 6 démontre-t-elle le déploiement continu ?
+Parce qu'une simple modification de contenu suffit à mettre le site à jour : aucun transfert manuel, aucun accès serveur. Le commit est le seul geste de mise en production.
+:::
+
+**Critères de réussite de la séance**
+
+- ☐ le site répond à son URL publique
+- ☐ deux exécutions de déploiement au moins sont vertes
 
 Passez au [TP 3 — Image conteneur sur GHCR](/tp/tp3-image-ghcr).

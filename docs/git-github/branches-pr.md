@@ -1,5 +1,17 @@
 # Branches & Pull Requests
 
+::: info 🎯 Séance 3 · 2 h
+À la fin de cette séance, vous savez :
+
+- isoler une modification dans une branche nommée selon une convention ;
+- ouvrir une Pull Request lisible et mener une revue de code ;
+- choisir une stratégie de fusion et protéger la branche `main`.
+
+**Prérequis :** [Les bases de Git](/git-github/bases-git)
+
+**Livrable attendu :** une Pull Request commentée par un camarade, puis fusionnée, et une règle de protection active sur `main`
+:::
+
 La **branche** permet de travailler sur une modification sans toucher à la version stable (`main`). La **Pull Request** permet de la faire relire puis fusionner.
 
 ## Créer une branche (dans le navigateur)
@@ -63,5 +75,29 @@ Sur un vrai projet, on **protège** la branche `main` (**Settings → Branches �
 - exiger que la CI passe au vert avant fusion.
 
 C'est une pratique DevOps fondamentale : **rien n'atteint `main` sans avoir été vérifié**.
+
+---
+
+## Auto-évaluation
+
+Répondez de mémoire avant de déplier la correction.
+
+::: details 1. Pourquoi ne pas commiter directement sur `main` ?
+Parce que `main` doit rester déployable à tout instant. Une branche permet de travailler sans risque, de faire relire, et surtout de laisser la CI se prononcer **avant** que le code n'atteigne la version de référence.
+:::
+
+::: details 2. Quand préférer *Squash and merge* à *Merge commit* ?
+Quand la branche contient des commits intermédiaires bruyants (« wip », « fix typo »). Le squash produit un `main` lisible où un commit = une fonctionnalité. On garde *Merge commit* si l'historique détaillé de la branche a une valeur.
+:::
+
+::: details 3. Que fait concrètement la règle *Require status checks to pass before merging* ?
+Elle grise le bouton de fusion tant que les vérifications sélectionnées ne sont pas vertes. C'est le mécanisme qui transforme la CI d'un simple indicateur en un véritable garde-fou.
+:::
+
+**Critères de réussite de la séance**
+
+- ☐ la branche porte un nom explicite du type `feat/…`, `fix/…` ou `docs/…`
+- ☐ la PR décrit ce qui change **et pourquoi**
+- ☐ au moins un commentaire de revue a été déposé et traité
 
 Passons à l'organisation du travail : [Issues & Projects](/git-github/issues-projects).

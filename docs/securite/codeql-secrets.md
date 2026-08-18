@@ -1,5 +1,17 @@
 # CodeQL & scan de secrets
 
+::: info 🎯 Séance 18 · 2 h
+À la fin de cette séance, vous savez :
+
+- activer l'analyse statique CodeQL et interpréter ses résultats ;
+- mettre en place le secret scanning et la protection par push ;
+- appliquer la procédure correcte en cas de fuite avérée.
+
+**Prérequis :** [Dependabot](/securite/dependabot)
+
+**Livrable attendu :** CodeQL actif avec une exécution verte, push protection activée
+:::
+
 Deux protections complémentaires : **CodeQL** analyse **votre** code à la recherche de failles ; le **secret scanning** traque les secrets qui auraient fui dans le dépôt.
 
 ## CodeQL : l'analyse statique de sécurité
@@ -101,5 +113,28 @@ Retirer le secret d'un commit **ne suffit pas** : il demeure dans l'historique. 
 - ✅ Dependabot maintient les dépendances saines ;
 - ✅ CodeQL détecte les failles de votre code ;
 - ✅ le secret scanning empêche les fuites de secrets.
+
+---
+
+## Auto-évaluation
+
+Répondez de mémoire avant de déplier la correction.
+
+::: details 1. CodeQL exécute-t-il le code qu'il analyse ?
+Non : c'est de l'analyse **statique**. Il interroge une représentation du code source à la recherche de schémas dangereux. C'est pourquoi il peut tourner sur chaque Pull Request sans environnement d'exécution.
+:::
+
+::: details 2. Que fait la *push protection* et en quoi diffère-t-elle du secret scanning ?
+Le secret scanning détecte les secrets **déjà présents** dans le dépôt. La push protection **bloque le push** avant que le secret n'arrive sur le serveur. L'une répare, l'autre empêche.
+:::
+
+::: details 3. Un token a fui puis a été retiré par un nouveau commit. Que faire ?
+**Le révoquer immédiatement** auprès du fournisseur et en générer un nouveau. Le retrait du code ne change rien : le token reste dans l'historique, et il figure déjà dans tous les clones existants.
+:::
+
+**Critères de réussite de la séance**
+
+- ☐ une exécution CodeQL est visible dans l'onglet Security
+- ☐ je sais énoncer la procédure de révocation dans le bon ordre
 
 La sécurité tourne désormais **en continu**. Terminons par le [déploiement continu](/deploiement/).

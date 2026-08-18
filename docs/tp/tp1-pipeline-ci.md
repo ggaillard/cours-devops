@@ -1,5 +1,17 @@
 # TP 1 — Pipeline CI de A à Z
 
+::: info 🎯 Séance 9 · 2 h
+À la fin de cette séance, vous savez :
+
+- mettre en place une CI complète sur un projet applicatif de bout en bout ;
+- constater qu'une CI rouge bloque effectivement une Pull Request ;
+- publier un badge d'état et protéger `main`.
+
+**Prérequis :** [Intégration continue](/actions/integration-continue)
+
+**Livrable attendu :** dépôt public, une PR échouée puis corrigée, badge vert, `main` protégée
+:::
+
 **Objectif** : créer un petit projet, écrire des tests, et mettre en place une **intégration continue** qui les exécute à chaque push et sur chaque Pull Request.
 
 **Prérequis** : avoir suivi [Git & GitHub](/git-github/) et [GitHub Actions](/actions/).
@@ -117,5 +129,29 @@ Désormais, impossible de fusionner si la CI échoue.
 
 - Ajoutez une **matrice** de versions Node (`18`, `20`, `22`) — voir [Matrices](/actions/matrices-artefacts).
 - Ajoutez une étape de **lint**.
+
+---
+
+## Auto-évaluation
+
+Répondez de mémoire avant de déplier la correction.
+
+::: details 1. À l'étape 4, la CI passe au rouge. Est-ce un échec du TP ?
+Au contraire : c'est le résultat attendu. L'objectif est d'observer que le pipeline détecte la régression **avant** la fusion. Une CI qui ne casse jamais n'a jamais rien prouvé.
+:::
+
+::: details 2. Le TP utilise `npm install`. Que faudrait-il écrire sur un vrai projet ?
+`npm ci`, qui installe strictement les versions du `package-lock.json` et échoue si le lock est incohérent. `npm install` reste tolérable ici parce que le lock n'existe pas encore au premier commit.
+:::
+
+::: details 3. Après avoir protégé `main`, que se passe-t-il si l'on tente de commiter directement dessus ?
+Le push est refusé : il faut passer par une branche et une Pull Request. C'est exactement l'effet recherché — plus rien n'atteint `main` sans être vérifié.
+:::
+
+**Critères de réussite de la séance**
+
+- ☐ l'historique montre une exécution rouge **puis** une verte sur la même PR
+- ☐ le badge du README affiche l'état réel du dépôt
+- ☐ la règle de protection de `main` est active
 
 Passez au [TP 2 — Publier un site sur Pages](/tp/tp2-site-pages).

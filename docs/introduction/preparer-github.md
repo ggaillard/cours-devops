@@ -1,5 +1,17 @@
 # Préparer son compte GitHub
 
+::: info 🎯 Séance 1 (3/3) · ~50 min
+À la fin de cette séance, vous savez :
+
+- disposer d'un compte GitHub sécurisé par une double authentification ;
+- évaluer les quotas gratuits et en tenir compte dans ses choix ;
+- créer le dépôt public qui servira de support à toute l'année.
+
+**Prérequis :** une adresse électronique valide
+
+**Livrable attendu :** un dépôt public `mon-projet-devops` contenant un README, avec la 2FA active sur le compte
+:::
+
 Avant de commencer, mettez votre compte en place. Cinq minutes suffisent.
 
 ## 1. Créer un compte
@@ -44,5 +56,28 @@ Vous n'avez **rien** à installer :
 2. Nommez-le, par exemple, `mon-projet-devops`.
 3. Cochez **Public** et **Add a README file**.
 4. Créez le dépôt.
+
+---
+
+## Auto-évaluation
+
+Répondez de mémoire avant de déplier la correction.
+
+::: details 1. Pourquoi la 2FA est-elle un réflexe DevSecOps et pas une simple formalité ?
+Un compte GitHub compromis donne accès au code, aux secrets de déploiement et aux workflows — donc à la production. La 2FA protège le maillon le plus attaqué de la chaîne : l'identité.
+:::
+
+::: details 2. Sur un compte gratuit, combien de minutes d'Actions consomme un dépôt public ?
+Aucune : les Actions sont gratuites et illimitées sur les dépôts publics. Le quota (~2 000 min/mois) ne s'applique qu'aux dépôts privés.
+:::
+
+::: details 3. Que faut-il installer sur son poste pour suivre ce cours ?
+Rien. Ni Git, ni Node, ni Docker : l'édition se fait sur github.com ou dans un Codespace, et les constructions tournent sur les runners d'Actions.
+:::
+
+**Critères de réussite de la séance**
+
+- ☐ le dépôt est public et porte un README
+- ☐ la double authentification est active sur le compte
 
 Vous êtes prêt. Direction [Git & GitHub](/git-github/).

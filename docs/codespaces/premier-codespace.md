@@ -1,5 +1,17 @@
 # Mon premier Codespace
 
+::: info 🎯 Séance 5 (2/2) · ~1 h 30
+À la fin de cette séance, vous savez :
+
+- lancer un Codespace et s'orienter dans l'éditeur et le terminal ;
+- exécuter du code et prévisualiser une application web via un port exposé ;
+- commiter et pousser depuis le Codespace.
+
+**Prérequis :** un dépôt public de travail
+
+**Livrable attendu :** une capture du port exposé et un commit poussé depuis le Codespace
+:::
+
 ## Lancer un Codespace
 
 1. Ouvrez votre dépôt sur github.com.
@@ -73,5 +85,28 @@ Gérez vos Codespaces depuis [github.com/codespaces](https://github.com/codespac
 - Arrêtez un Codespace dès que vous ne l'utilisez plus.
 - Ne stockez **jamais** de secret en clair dans le code ; utilisez les **Codespaces secrets** (Settings du compte).
 - Commitez souvent : un Codespace est jetable, mais le dépôt est votre mémoire.
+
+---
+
+## Auto-évaluation
+
+Répondez de mémoire avant de déplier la correction.
+
+::: details 1. Le terminal d'un Codespace est-il un vrai shell Linux ?
+Oui : c'est un conteneur Linux complet. On peut y installer des paquets, exécuter des serveurs, lancer des tests. La différence avec un poste local est qu'il est distant et jetable, pas qu'il serait bridé.
+:::
+
+::: details 2. Comment voir dans son navigateur une application lancée dans le Codespace ?
+Le port est détecté automatiquement et un bandeau propose de l'ouvrir ; une URL temporaire est créée. L'onglet **Ports** permet aussi de rendre un port public pour le montrer à quelqu'un.
+:::
+
+::: details 3. Pourquoi commiter souvent depuis un Codespace ?
+Parce que le Codespace est jetable mais le dépôt est la mémoire. Un travail non poussé disparaît avec l'environnement — c'est le seul vrai piège de cet outil.
+:::
+
+**Critères de réussite de la séance**
+
+- ☐ le Codespace a été arrêté en fin de séance
+- ☐ un commit réalisé dans le Codespace est visible sur github.com
 
 Pour rendre l'environnement reproductible, décrivons-le : [Dev Containers](/codespaces/dev-containers).

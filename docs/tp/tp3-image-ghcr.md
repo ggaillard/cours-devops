@@ -1,5 +1,17 @@
 # TP 3 — Image conteneur sur GHCR
 
+::: info 🎯 Séance 16 · 2 h
+À la fin de cette séance, vous savez :
+
+- conteneuriser une application et publier son image sans Docker local ;
+- produire deux tags cohérents à partir d'un tag Git ;
+- rendre une image accessible et documenter sa récupération.
+
+**Prérequis :** [Publier sur GHCR](/conteneurs/publier-ghcr)
+
+**Livrable attendu :** image publiée sous `latest` et `1.0.0`, rendue publique
+:::
+
 **Objectif** : construire une image de conteneur **dans GitHub Actions** et la publier sur le **GitHub Container Registry**, sans Docker installé localement.
 
 **Prérequis** : [Conteneurs & GHCR](/conteneurs/).
@@ -135,3 +147,26 @@ docker pull ghcr.io/VOTRE-COMPTE/tp-image-ghcr:latest
 - Ajoutez l'analyse **CodeQL** au dépôt (voir [DevSecOps](/securite/codeql-secrets)).
 
 Félicitations : vous avez parcouru l'ensemble de la chaîne DevOps **100 % en ligne** ! 🎉
+
+---
+
+## Auto-évaluation
+
+Répondez de mémoire avant de déplier la correction.
+
+::: details 1. Le workflow échoue sur « permission denied » à la poussée. Que manque-t-il ?
+Le bloc `permissions: packages: write`. Sans lui, le `GITHUB_TOKEN` peut lire le dépôt mais pas publier de paquet.
+:::
+
+::: details 2. Pourquoi ce TP n'exige-t-il aucune installation, alors qu'il produit une image Docker ?
+Parce que la construction a lieu sur le runner d'Actions, qui dispose du moteur de conteneurs. Votre poste n'a fait qu'éditer du texte et pousser des commits.
+:::
+
+::: details 3. Comment améliorer ce pipeline pour éviter de publier une image cassée ?
+En ajoutant un job de test relié par `needs`, de sorte que la publication n'ait lieu qu'après des tests verts. Publier d'abord et vérifier ensuite revient à livrer sans filet.
+:::
+
+**Critères de réussite de la séance**
+
+- ☐ l'image est visible dans Packages et publique
+- ☐ les tags `latest` et `1.0.0` pointent vers la même construction

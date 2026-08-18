@@ -1,5 +1,17 @@
 # Issues & Projects
 
+::: info 🎯 Séance 4 · 2 h
+À la fin de cette séance, vous savez :
+
+- rédiger une Issue exploitable par quelqu'un d'autre que soi ;
+- relier une Issue à la Pull Request qui la résout ;
+- organiser un lot de travail dans un tableau de suivi.
+
+**Prérequis :** [Branches & Pull Requests](/git-github/branches-pr)
+
+**Livrable attendu :** cinq Issues étiquetées, un Project alimenté, et une PR fermant une Issue par `Closes #n`
+:::
+
 Le DevOps commence par la **planification**. GitHub intègre deux outils pour cela : les **Issues** (tickets) et les **Projects** (tableaux de suivi).
 
 ## Les Issues
@@ -58,5 +70,28 @@ Vous savez désormais :
 - ✅ versionner avec des commits ;
 - ✅ collaborer avec branches et Pull Requests ;
 - ✅ organiser le travail avec Issues et Projects.
+
+---
+
+## Auto-évaluation
+
+Répondez de mémoire avant de déplier la correction.
+
+::: details 1. Qu'est-ce qui distingue une Issue utile d'une Issue inutile ?
+Une Issue utile permet à un tiers d'agir sans poser de question : contexte, comportement attendu, comportement observé et — pour un bug — les étapes de reproduction. « Le site bugue » n'est pas une Issue.
+:::
+
+::: details 2. Que se passe-t-il si une PR contient la mention `Closes #12` ?
+L'Issue n°12 se ferme automatiquement à la fusion de la PR, et un lien bidirectionnel apparaît entre les deux. On obtient sans effort la traçabilité demande → code → livraison.
+:::
+
+::: details 3. En quoi la planification relève-t-elle du DevOps, et pas seulement de la gestion de projet ?
+Parce qu'elle ferme la boucle : *Plan* est la première étape du cycle, et c'est là que remontent les retours issus de la production. Sans elle, l'automatisation aval fonctionne à vide.
+:::
+
+**Critères de réussite de la séance**
+
+- ☐ chaque Issue porte un titre actionnable, un label et un assigné
+- ☐ au moins une Issue est fermée automatiquement par une PR
 
 Prochaine étape : coder dans le cloud avec [GitHub Codespaces](/codespaces/).

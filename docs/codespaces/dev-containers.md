@@ -1,5 +1,17 @@
 # Dev Containers
 
+::: info 🎯 Séance 6 · 2 h
+À la fin de cette séance, vous savez :
+
+- lire et écrire un fichier `devcontainer.json` ;
+- ajouter des outils et des extensions à un environnement d'équipe ;
+- reconstruire un conteneur après modification de sa définition.
+
+**Prérequis :** [Mon premier Codespace](/codespaces/premier-codespace)
+
+**Livrable attendu :** un `.devcontainer/devcontainer.json` commité, avec `postCreateCommand` et au moins deux extensions
+:::
+
 Un **Dev Container** décrit, dans un fichier versionné, l'environnement de développement : l'image de base, les outils, les extensions. Ainsi, **tout le monde code dans le même contexte**.
 
 ## Le fichier `devcontainer.json`
@@ -54,5 +66,28 @@ Il se place dans un dossier `.devcontainer/` à la racine du dépôt :
 - ✅ lancer un environnement de dev dans le cloud ;
 - ✅ coder, exécuter et prévisualiser sans rien installer ;
 - ✅ rendre l'environnement **reproductible** avec un Dev Container.
+
+---
+
+## Auto-évaluation
+
+Répondez de mémoire avant de déplier la correction.
+
+::: details 1. À quoi sert `postCreateCommand` ?
+À exécuter une commande juste après la création du conteneur — typiquement `npm ci` ou `pip install -r requirements.txt`. C'est ce qui rend l'environnement utilisable immédiatement, sans notice d'installation.
+:::
+
+::: details 2. Pourquoi dit-on que le Dev Container relève de l'« environnement comme code » ?
+Parce que la configuration est un fichier versionné : elle se relit en Pull Request, se compare entre deux versions, et se restaure comme n'importe quel commit. C'est la même idée que l'infrastructure comme code, appliquée au poste de développement.
+:::
+
+::: details 3. Que faut-il faire après avoir modifié `devcontainer.json` dans un Codespace ouvert ?
+Un **Rebuild Container** depuis la palette de commandes. Sans reconstruction, le conteneur en cours continue de tourner avec l'ancienne définition.
+:::
+
+**Critères de réussite de la séance**
+
+- ☐ le fichier est valide (le conteneur se reconstruit sans erreur)
+- ☐ un camarade obtient le même environnement en ouvrant le dépôt
 
 Passons à l'automatisation : [GitHub Actions](/actions/).

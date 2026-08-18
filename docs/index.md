@@ -57,13 +57,15 @@ Aucune machine virtuelle à provisionner, aucun serveur à administrer, aucun lo
     collaborer)         le cloud)          serveur)             une image)            la chaîne)
 ```
 
-| Section | Ce que vous apprenez | Niveau |
-| --- | --- | --- |
-| [Git & GitHub](/git-github/) | Versionner, brancher, ouvrir des Pull Requests, gérer un projet | 🟢 Débutant |
-| [Codespaces](/codespaces/) | Coder dans un environnement cloud reproductible | 🟢 Débutant |
-| [GitHub Actions](/actions/) | Automatiser tests et déploiements avec des workflows YAML | 🟡 Intermédiaire |
-| [GitHub Pages](/pages/) | Publier un site statique en continu | 🟡 Intermédiaire |
-| [Conteneurs (GHCR)](/conteneurs/) | Construire et publier une image de conteneur | 🔴 Avancé |
-| [DevSecOps](/securite/) | Intégrer la sécurité dans le dépôt et les pipelines | 🔴 Avancé |
+| Séances | Section | Ce que vous apprenez | Niveau |
+| --- | --- | --- | --- |
+| S2–S4 | [Git & GitHub](/git-github/) | Versionner, brancher, ouvrir des Pull Requests, gérer un projet | 🟢 Débutant |
+| S5–S6 | [Codespaces](/codespaces/) | Coder dans un environnement cloud reproductible | 🟢 Débutant |
+| S7–S11 | [GitHub Actions](/actions/) | Automatiser tests et déploiements avec des workflows YAML | 🟡 Intermédiaire |
+| S12–S13 | [GitHub Pages](/pages/) | Publier un site statique en continu | 🟡 Intermédiaire |
+| S14–S16 | [Conteneurs (GHCR)](/conteneurs/) | Construire et publier une image de conteneur | 🔴 Avancé |
+| S17–S19 | [DevSecOps](/securite/) | Intégrer la sécurité dans le dépôt et les pipelines | 🔴 Avancé |
 
-> **Première visite ?** Commencez par l'[introduction au DevOps](/introduction/), puis suivez les sections dans l'ordre. Chaque section se termine par un TP concret.
+> **Première visite ?** Commencez par l'[introduction au DevOps](/introduction/), puis suivez les sections dans l'ordre.
+> Le cours est organisé en **24 séances de 2 h** : chaque page annonce ses objectifs et se termine par une auto-évaluation.
+> Voir [la progression complète](/introduction/parcours).

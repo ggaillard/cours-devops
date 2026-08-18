@@ -1,5 +1,17 @@
 # Publier sur GHCR
 
+::: info 🎯 Séance 15 · 2 h
+À la fin de cette séance, vous savez :
+
+- publier une image sur GHCR depuis un workflow, sans token personnel ;
+- générer automatiquement tags et labels avec `metadata-action` ;
+- lier une version de code à une version d'image via un tag Git.
+
+**Prérequis :** [Construire une image dans Actions](/conteneurs/build-image)
+
+**Livrable attendu :** une image publiée sous au moins deux tags, visible dans l'onglet Packages
+:::
+
 Objectif : construire l'image **puis la publier** sur le GitHub Container Registry, automatiquement, sans jamais utiliser Docker en local.
 
 ## Le workflow complet
@@ -97,5 +109,28 @@ En poussant un tag Git `v1.0.0`, le workflow publie une image `:1.0.0`. On assoc
 - ✅ écrire un Dockerfile propre ;
 - ✅ construire l'image dans la CI ;
 - ✅ la publier sur GHCR avec le `GITHUB_TOKEN`, sans Docker local ni token perso.
+
+---
+
+## Auto-évaluation
+
+Répondez de mémoire avant de déplier la correction.
+
+::: details 1. Quelle permission faut-il pour pousser sur GHCR, et pourquoi la déclarer ?
+`packages: write`. On la déclare explicitement pour appliquer le moindre privilège : le `GITHUB_TOKEN` ne reçoit alors que le droit de publier un paquet, et rien d'autre sur le dépôt.
+:::
+
+::: details 2. Que produit `git push origin v1.0.0` avec le workflow de publication ?
+Le déclenchement du workflow sur le tag, puis la publication d'une image étiquetée `1.0.0`. Version du code et version de l'image deviennent alignées, ce qui permet de savoir exactement quel commit tourne en production.
+:::
+
+::: details 3. Une image fraîchement publiée est-elle accessible à tous ?
+Non, elle est privée par défaut. Il faut passer par **Package settings → Change visibility** pour la rendre publique.
+:::
+
+**Critères de réussite de la séance**
+
+- ☐ l'image apparaît dans la section Packages du dépôt
+- ☐ les tags `latest` et une version sémantique coexistent
 
 Sécurisons maintenant la chaîne : [DevSecOps](/securite/).

@@ -1,5 +1,17 @@
 # Pourquoi le tout-en-ligne ?
 
+::: info 🎯 Séance 1 (2/3) · ~30 min
+À la fin de cette séance, vous savez :
+
+- justifier le choix pédagogique du tout-en-ligne ;
+- associer chaque outil local classique à son équivalent hébergé ;
+- citer trois limites réelles de cette approche.
+
+**Prérequis :** [Introduction au DevOps](/introduction/)
+
+**Livrable attendu :** le tableau de correspondance local → en ligne, complété de mémoire
+:::
+
 Ce cours fait un choix assumé : **tout se passe dans le navigateur et sur GitHub**. Aucune machine virtuelle à installer, aucun serveur à louer, aucun logiciel à configurer sur son poste.
 
 ## Les avantages pédagogiques
@@ -29,5 +41,27 @@ Le tout-en-ligne a aussi ses contraintes, qu'un professionnel doit connaître :
 - **Connexion requise.** Tout repose sur Internet.
 
 > Ces limites sont réelles, mais pour **apprendre** le DevOps, le tout-en-ligne offre le meilleur rapport temps-passé / concepts-appris.
+
+---
+
+## Auto-évaluation
+
+Répondez de mémoire avant de déplier la correction.
+
+::: details 1. Quel est l'équivalent en ligne d'une VM Debian montée sous VirtualBox ?
+Un **Codespace** : un conteneur Linux qui démarre dans le cloud avec un VS Code dans le navigateur. Même terminal, même liberté, sans hyperviseur à installer.
+:::
+
+::: details 2. Citez deux limites du tout-en-ligne qu'un professionnel doit connaître.
+La **dépendance à un fournisseur** (ici GitHub — les concepts restent transférables à GitLab ou Azure DevOps, pas les fichiers) et les **quotas** (minutes d'Actions, cœurs-heures Codespaces). S'ajoute la nécessité d'une connexion permanente.
+:::
+
+::: details 3. Pourquoi travailler en dépôt public pendant la formation ?
+Les minutes d'Actions y sont gratuites et illimitées. En dépôt privé, on consomme un quota mensuel qui s'épuise vite avec des pipelines lancés à chaque push.
+:::
+
+**Critères de réussite de la séance**
+
+- ☐ je sais expliquer pourquoi « ça marche sur ma machine » disparaît avec un environnement décrit par fichier
 
 Passez à la suite : [Le parcours recommandé](/introduction/parcours).

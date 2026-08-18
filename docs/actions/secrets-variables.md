@@ -1,5 +1,17 @@
 # Secrets & variables
 
+::: info 🎯 Séance 10 · 2 h
+À la fin de cette séance, vous savez :
+
+- stocker une donnée sensible dans un secret de dépôt et l'utiliser dans un workflow ;
+- distinguer secret, variable et `GITHUB_TOKEN` ;
+- appliquer le principe du moindre privilège via le bloc `permissions`.
+
+**Prérequis :** [Intégration continue](/actions/integration-continue)
+
+**Livrable attendu :** un workflow consommant un secret, avec des permissions explicitement restreintes
+:::
+
 Un pipeline a souvent besoin d'informations sensibles (clés d'API, tokens, mots de passe). On ne les écrit **jamais** en clair dans le code : on utilise les **secrets** GitHub.
 
 ## Rappel de sécurité
@@ -76,5 +88,28 @@ jobs:
     steps:
       - run: echo "Déploiement en production"
 ```
+
+---
+
+## Auto-évaluation
+
+Répondez de mémoire avant de déplier la correction.
+
+::: details 1. Un secret peut-il apparaître dans les journaux d'exécution ?
+GitHub masque automatiquement les valeurs de secrets sous la forme `***`. Le masquage reste toutefois contournable — par exemple si l'on encode la valeur avant de l'afficher. On ne journalise jamais un secret volontairement.
+:::
+
+::: details 2. Quand utiliser une variable plutôt qu'un secret ?
+Pour tout ce qui n'est pas sensible : nom d'environnement, URL publique, indicateur de configuration. Les variables sont lisibles dans les journaux, ce qui aide au débogage — un secret inutile complique le diagnostic sans rien protéger.
+:::
+
+::: details 3. Pourquoi le `GITHUB_TOKEN` est-il préférable à un token personnel ?
+Il est créé automatiquement à chaque exécution, limité au dépôt, restreint par le bloc `permissions`, et il expire à la fin du job. Un token personnel, lui, doit être créé, stocké, renouvelé — et il porte souvent bien plus de droits que nécessaire.
+:::
+
+**Critères de réussite de la séance**
+
+- ☐ aucune valeur sensible n'apparaît dans un fichier versionné
+- ☐ le bloc `permissions` ne contient que ce dont le workflow a besoin
 
 Continuons avec les techniques avancées : [Matrices & artefacts](/actions/matrices-artefacts).

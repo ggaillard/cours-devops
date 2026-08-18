@@ -1,5 +1,17 @@
 # Déployer un site statique
 
+::: info 🎯 Séance 12 (2/2) · ~1 h 30
+À la fin de cette séance, vous savez :
+
+- activer Pages avec la source *GitHub Actions* ;
+- écrire un workflow de déploiement en deux jobs (build puis deploy) ;
+- diagnostiquer un site publié sans styles.
+
+**Prérequis :** [GitHub Pages](/pages/)
+
+**Livrable attendu :** un site en ligne, republié automatiquement à chaque push sur `main`
+:::
+
 On met en place un déploiement **continu** : à chaque push sur `main`, GitHub Actions construit le site et le publie sur GitHub Pages.
 
 ## 1. Activer Pages
@@ -116,5 +128,28 @@ Pour un site **déjà en HTML pur**, on saute l'étape de build et on publie dir
 - ✅ activer Pages avec la source *GitHub Actions* ;
 - ✅ construire **et** déployer automatiquement à chaque push ;
 - ✅ configurer la base URL pour un site projet.
+
+---
+
+## Auto-évaluation
+
+Répondez de mémoire avant de déplier la correction.
+
+::: details 1. Le site s'affiche sans aucun style. Quelle est la cause la plus probable ?
+Une **base URL** absente ou fausse. Les chemins pointent alors vers la racine du domaine au lieu du sous-dossier du dépôt, et les fichiers CSS renvoient une erreur 404.
+:::
+
+::: details 2. À quoi sert le bloc `concurrency: group: pages` ?
+À éviter que deux déploiements se chevauchent. Sans lui, deux push rapprochés peuvent aboutir à la mise en ligne de la version la plus ancienne des deux.
+:::
+
+::: details 3. Pourquoi séparer `build` et `deploy` en deux jobs ?
+Pour cloisonner les droits : le job de construction n'a besoin que de lire, seul le job de déploiement reçoit `pages: write` et `id-token: write`. C'est le moindre privilège appliqué à un pipeline.
+:::
+
+**Critères de réussite de la séance**
+
+- ☐ le site est accessible à son URL publique
+- ☐ une modification de contenu se retrouve en ligne sans action manuelle
 
 Passons aux conteneurs : [Conteneurs (GHCR)](/conteneurs/).

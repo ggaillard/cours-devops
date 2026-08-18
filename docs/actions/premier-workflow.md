@@ -1,5 +1,17 @@
 # Mon premier workflow
 
+::: info 🎯 Séance 7 (2/2) · ~1 h 20
+À la fin de cette séance, vous savez :
+
+- écrire et déclencher son premier workflow ;
+- lire les journaux d'exécution étape par étape ;
+- combiner plusieurs événements déclencheurs, dont le déclenchement manuel.
+
+**Prérequis :** [GitHub Actions](/actions/)
+
+**Livrable attendu :** un workflow `hello.yml` exécuté avec succès, avec une exécution manuelle visible
+:::
+
 Objectif : créer un workflow qui s'exécute à chaque push et affiche un message.
 
 ## 1. Créer le fichier
@@ -85,5 +97,28 @@ on:
   schedule:
     - cron: '0 8 * * 1'   # tous les lundis à 8h UTC
 ```
+
+---
+
+## Auto-évaluation
+
+Répondez de mémoire avant de déplier la correction.
+
+::: details 1. Comment ajouter un bouton « Run workflow » dans l'onglet Actions ?
+En déclarant l'événement `workflow_dispatch:`. Très utile pour rejouer un déploiement sans avoir à produire un commit artificiel.
+:::
+
+::: details 2. Que contient `$GITHUB_REF_NAME` et à quoi cela sert-il ?
+Le nom de la branche ou du tag ayant déclenché l'exécution. On s'en sert pour adapter le comportement — par exemple ne déployer en production que si l'on est sur `main`.
+:::
+
+::: details 3. Le workflow ne se déclenche pas après le commit. Quelles pistes vérifier en premier ?
+Le chemin exact du fichier (`.github/workflows/`), l'extension (`.yml`), la validité du YAML (l'indentation en particulier), et l'adéquation entre l'événement déclaré et l'action réalisée.
+:::
+
+**Critères de réussite de la séance**
+
+- ☐ l'exécution est verte dans l'onglet Actions
+- ☐ je sais retrouver la sortie d'une étape précise dans les journaux
 
 Vous avez un workflow fonctionnel. Rendons-le utile : [Intégration continue (CI)](/actions/integration-continue).

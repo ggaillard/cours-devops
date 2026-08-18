@@ -1,5 +1,17 @@
 # Intégration continue (CI)
 
+::: info 🎯 Séance 8 · 2 h
+À la fin de cette séance, vous savez :
+
+- construire un pipeline de CI qui installe, vérifie le style et teste une application ;
+- épingler les versions d'actions pour obtenir un pipeline reproductible ;
+- conditionner la fusion d'une Pull Request à une CI verte.
+
+**Prérequis :** [Mon premier workflow](/actions/premier-workflow)
+
+**Livrable attendu :** un `ci.yml` opérationnel sur un projet applicatif, avec badge dans le README
+:::
+
 L'**intégration continue** consiste à vérifier automatiquement chaque modification : le code se construit-il ? Les tests passent-ils ? Le style est-il respecté ? Si quelque chose casse, on le sait **immédiatement**.
 
 ## Un pipeline CI type
@@ -102,5 +114,28 @@ Le badge devient vert ✅ ou rouge ❌ selon la dernière exécution. C'est un s
 ## Exiger la CI avant fusion
 
 Combinez la CI avec la **protection de branche** (voir [Branches & PR](/git-github/branches-pr)) : cochez *Require status checks to pass before merging*. Ainsi, **une PR ne peut être fusionnée que si la CI est verte**.
+
+---
+
+## Auto-évaluation
+
+Répondez de mémoire avant de déplier la correction.
+
+::: details 1. Pourquoi écrire `@v4` et non `@main` sur une action ?
+Parce qu'un pipeline doit être reproductible. Avec `@main`, le comportement peut changer du jour au lendemain sans aucune modification de votre code — et le pipeline devient rouge sans raison apparente.
+:::
+
+::: details 2. Quelle différence entre `npm ci` et `npm install` dans une CI ?
+`npm ci` installe exactement les versions figées par `package-lock.json` et échoue si le fichier n'est pas cohérent. `npm install` peut mettre à jour le lock et introduire des versions différentes de celles testées localement. En CI, on veut `npm ci`.
+:::
+
+::: details 3. La CI est verte mais le code est bogué. Où est le problème ?
+Dans les tests, pas dans la CI. Un pipeline ne vaut que ce que valent ses vérifications : sans test sur le comportement fautif, il ne peut rien détecter. La CI automatise le contrôle, elle ne l'invente pas.
+:::
+
+**Critères de réussite de la séance**
+
+- ☐ le pipeline échoue effectivement lorsqu'un test échoue
+- ☐ le badge affiché dans le README reflète la dernière exécution
 
 Prochaine étape : gérer les informations sensibles avec [Secrets & variables](/actions/secrets-variables).

@@ -1,5 +1,17 @@
 # Conteneurs & GHCR
 
+::: info 🎯 Séance 14 (1/2) · ~30 min
+À la fin de cette séance, vous savez :
+
+- distinguer image, conteneur, Dockerfile, registre et tag ;
+- expliquer l'apport des conteneurs pour la portabilité et la reproductibilité ;
+- situer GHCR dans l'écosystème GitHub.
+
+**Prérequis :** [GitHub Actions](/actions/)
+
+**Livrable attendu :** le schéma du flux Dockerfile → Actions → GHCR reproduit
+:::
+
 Un **conteneur** empaquette une application avec tout ce dont elle a besoin pour tourner (dépendances, configuration) dans une **image** portable. « Ça marche sur ma machine » devient « ça marche partout ».
 
 Ici encore, **rien à installer** : on construit les images **dans GitHub Actions** et on les publie sur le **GitHub Container Registry (GHCR)**.
@@ -52,3 +64,25 @@ Il est intégré au dépôt : mêmes droits d'accès, publication via le `GITHUB
 
 - [Construire une image dans Actions](/conteneurs/build-image)
 - [Publier sur GHCR](/conteneurs/publier-ghcr)
+
+---
+
+## Auto-évaluation
+
+Répondez de mémoire avant de déplier la correction.
+
+::: details 1. Quelle est la différence entre une image et un conteneur ?
+L'**image** est un modèle figé et immuable ; le **conteneur** est une instance en cours d'exécution de cette image. Même relation qu'entre une classe et un objet : une image, plusieurs conteneurs.
+:::
+
+::: details 2. Comment construire une image sans Docker installé sur son poste ?
+En laissant le runner d'Actions le faire : il dispose d'un moteur de conteneurs. Le dépôt ne contient que le `Dockerfile`, le pipeline s'occupe de la construction et de la publication.
+:::
+
+::: details 3. Que désigne exactement `ghcr.io/dupont/mon-app:1.2.0` ?
+Le registre (`ghcr.io`), le propriétaire (`dupont`), le nom de l'image (`mon-app`) et le tag de version (`1.2.0`). Sans tag explicite, `latest` est sous-entendu — ce qui n'est jamais une bonne idée en production.
+:::
+
+**Critères de réussite de la séance**
+
+- ☐ je sais nommer correctement une image destinée à GHCR
