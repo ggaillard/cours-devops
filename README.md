@@ -24,6 +24,7 @@ Site en ligne : **https://ggaillard.github.io/cours-devops/**
 | Modélisation UML | Cas d'utilisation, activité, déploiement — diagrammes versionnés en Mermaid |
 | Conception objet & API | POO en Java, chaque notion avec son diagramme UML, API REST, JUnit/Mockito/JaCoCo |
 | TP | 5 travaux pratiques transversaux |
+| Aller plus loin | DataOps & MLOps — module d'ouverture hors progression |
 
 ## Organisation
 

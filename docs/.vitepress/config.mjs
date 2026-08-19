@@ -44,6 +44,7 @@ export default withMermaid(defineConfig({
           { text: 'UML', link: '/uml/' },
           { text: 'Conception objet', link: '/api-java/' },
           { text: 'Les TP', link: '/tp/' },
+          { text: 'Aller plus loin', link: '/aller-plus-loin/' },
         ],
       },
     ],
@@ -148,6 +149,15 @@ export default withMermaid(defineConfig({
           { text: 'S28 · Abstraction & polymorphisme', link: '/api-java/abstraction-polymorphisme' },
           { text: 'S29 · Exposer une API REST', link: '/api-java/api-rest' },
           { text: "S30 · Tester l'API", link: '/api-java/tester-api' },
+        ],
+      },
+      {
+        text: 'Aller plus loin (hors progression)',
+        collapsed: true,
+        items: [
+          { text: 'Les évolutions du métier', link: '/aller-plus-loin/' },
+          { text: 'DataOps', link: '/aller-plus-loin/dataops' },
+          { text: 'MLOps', link: '/aller-plus-loin/mlops' },
         ],
       },
       {

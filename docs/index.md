@@ -49,6 +49,10 @@ features:
     title: Modélisation UML
     details: "Cas d'utilisation, activité, déploiement — des diagrammes écrits en texte, versionnés et relus en Pull Request. Classes, états et séquence sont vus avec la POO qu'ils servent."
     link: /uml/
+  - icon: 🧭
+    title: Aller plus loin
+    details: "DataOps et MLOps : ce que devient la chaîne DevOps quand elle doit gouverner non plus seulement du code, mais aussi des données et des modèles."
+    link: /aller-plus-loin/
   - icon: ☕
     title: Conception objet & API
     details: Encapsulation, associations, polymorphisme — chaque notion arrive avec le diagramme UML qui l'exprime, jusqu'à l'API livrée par la chaîne.
@@ -88,3 +92,4 @@ Aucune machine virtuelle à provisionner, aucun serveur à administrer, aucun lo
 > **Première visite ?** Commencez par l'[introduction au DevOps](/introduction/), puis suivez les sections dans l'ordre.
 > Le cours est organisé en **32 séances de 2 h** : chaque page annonce ses objectifs et se termine par une auto-évaluation.
 > Voir [la progression complète](/introduction/parcours).
+> Un [module d'ouverture](/aller-plus-loin/) sur le DataOps et le MLOps complète le parcours, hors progression.

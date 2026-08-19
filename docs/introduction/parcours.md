@@ -165,6 +165,20 @@ Dans tous les cas, anticipez :
 
 Les deux blocs à ne jamais sacrifier sont le **4** et le **7** : sans intégration continue ni tests sérieux, tout le reste n'est qu'un enchaînement d'outils.
 
+## Après les 32 séances
+
+Un **module d'ouverture** complète le parcours, [Les évolutions du métier](/aller-plus-loin/) : ce que le DevOps devient quand il doit gouverner non plus seulement du code, mais aussi des **données** (DataOps) et des **modèles** (MLOps).
+
+Il est délibérément **hors progression** : pas de numéro de séance, aucune dépendance en aval, et il peut être sauté sans conséquence. Trois usages possibles :
+
+| Usage | Comment |
+| --- | --- |
+| Lecture en autonomie | Environ 1 h de lecture, 30 min de manipulation |
+| Étudiants en avance | Pendant que le reste du groupe finit le projet |
+| Sujet de projet libre | Le pipeline fourni sert de point de départ |
+
+Il repose sur une **démonstration prête à l'emploi** en Python : les scripts sont fournis, l'étudiant les exécute et interprète les sorties. Ni Python ni le *machine learning* ne sont des prérequis.
+
 ## Dépendances entre séances
 
 ```

@@ -1,0 +1,6 @@
+# Tout ce qui est régénérable : jamais versionné.
+donnees/*.csv
+mlflow.db
+mlruns/
+mlartifacts/
+__pycache__/

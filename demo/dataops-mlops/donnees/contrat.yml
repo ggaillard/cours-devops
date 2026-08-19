@@ -1,0 +1,24 @@
+# Le contrat de données : ce que toute livraison doit respecter.
+# Il est versionné, relu en Pull Request, et vérifié par la CI.
+colonnes_obligatoires:
+  - MedInc
+  - HouseAge
+  - AveRooms
+  - Population
+  - MedHouseVal
+
+regles:
+  - colonne: MedHouseVal
+    min: 0.0
+    max: 6.0
+    valeurs_manquantes_tolerees: 0
+  - colonne: HouseAge
+    min: 1
+    max: 60
+    valeurs_manquantes_tolerees: 0
+  - colonne: Population
+    min: 1
+    max: 40000
+    valeurs_manquantes_tolerees: 0
+
+lignes_minimum: 1000
