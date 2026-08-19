@@ -1,6 +1,6 @@
 # Le parcours recommandé
 
-Le cours est découpé en **30 séances de 2 heures**, soit environ 60 h — le volume d'un module annuel à raison d'une séance hebdomadaire. Chaque séance a des objectifs explicites, un livrable vérifiable et une auto-évaluation en fin de page.
+Le cours est découpé en **33 séances de 2 heures**, soit environ 66 h — le volume d'un module annuel à raison d'une séance hebdomadaire. Chaque séance a des objectifs explicites, un livrable vérifiable et une auto-évaluation en fin de page.
 
 ::: tip Lire une page de cours
 Chaque page s'ouvre sur un bandeau 🎯 (séance, durée, objectifs, prérequis, livrable) et se termine par une auto-évaluation avec correction dépliable et critères de réussite. Une page = une portion de séance.
@@ -15,12 +15,13 @@ Chaque page s'ouvre sur un bandeau 🎯 (séance, durée, objectifs, prérequis,
    └───────────────────────┬─────────────────────┘
                            ▼
    ┌─────────────────────────────────────────────┐
-   │  PARTIE 2 — Une API objet         S24 – S30 │
-   │  POO en Java, API REST, livrée par la chaîne│
+   │  PARTIE 2 — Concevoir et livrer   S24 – S33 │
+   │  UML, POO en Java, API REST livrée par la   │
+   │  chaîne montée en partie 1                  │
    └─────────────────────────────────────────────┘
 ```
 
-La première partie construit l'outillage sur de petits projets. La seconde l'applique à une **vraie application** : une API REST de gestion d'interventions, écrite en Java, qui traverse tout le pipeline jusqu'à l'image publiée.
+La première partie construit l'outillage sur de petits projets. La seconde l'applique à une **vraie application** : une API REST de gestion d'interventions, d'abord **modélisée en UML**, puis écrite en Java, qui traverse tout le pipeline jusqu'à l'image publiée.
 
 ## Partie 1 — La chaîne DevOps
 
@@ -90,57 +91,74 @@ Jusqu'ici la CI exécutait « les tests » sans qu'on ait interrogé leur nature
 | **S22** | [Analyse statique & quality gate](/qualite/analyse-statique) | Format, lint et complexité imposés par la CI |
 | **S23** | 🧪 [**TP 4 — Durcir la chaîne CI**](/tp/tp4-qualite-ci) | Une PR bloquée par la couverture, puis débloquée |
 
-## Partie 2 — Une API objet en Java
+## Partie 2 — Concevoir puis livrer
 
-### Bloc 8 — POO, API REST et livraison (S24–S29)
+### Bloc 8 — Modélisation UML (S24–S26)
 
-Une seule application, construite de séance en séance. Les concepts objet sont travaillés **sans framework** en S25–S26, avant que Spring n'entre en scène.
+Les diagrammes sont **écrits en texte, versionnés et relus en Pull Request** — pas dessinés dans un logiciel puis exportés en image. Le modèle devient un artefact de développement comme un autre.
+
+| Séance | Contenu | Diagrammes |
+| --- | --- | --- |
+| **S24** | [Modéliser avec UML](/uml/) | Pourquoi modéliser, UML comme code, cas d'utilisation |
+| **S25** | [Le diagramme de classes](/uml/classes) | Visibilité, multiplicités, héritage, composition / agrégation |
+| **S26** | [Les diagrammes dynamiques](/uml/dynamique) | Séquence, états, activité, déploiement |
+
+::: tip UML ne précède pas seulement la POO, il la sert
+Le diagramme de classes de S25 **est** le domaine que vous coderez en S28–S29 ; le diagramme de séquence de S26 **est** la liste des tests de S31. Les deux blocs se répondent page par page.
+:::
+
+### Bloc 9 — POO, API REST et livraison (S27–S32)
+
+Une seule application, construite de séance en séance. Les concepts objet sont travaillés **sans framework** en S28–S29, avant que Spring n'entre en scène.
 
 | Séance | Contenu | Notions objet |
 | --- | --- | --- |
-| **S24** | [Une API objet en Java](/api-java/) | Choix du langage, projet Maven, CI dès le premier commit |
-| **S25** | [Modéliser le domaine](/api-java/modeliser-poo) | Encapsulation, invariants, immuabilité, `equals`/`hashCode` |
-| **S26** | [Abstraction & polymorphisme](/api-java/abstraction-polymorphisme) | Classe abstraite, interface, inversion de dépendance |
-| **S27** | [Exposer une API REST](/api-java/api-rest) | Couches, DTO, validation, codes HTTP |
-| **S28** | [Tester l'API](/api-java/tester-api) | JUnit 5, Mockito, MockMvc, JaCoCo |
-| **S29** | 🧪 [**TP 5 — Livrer l'API**](/tp/tp5-api-livree) | Dockerfile multi-étapes, publication conditionnée |
+| **S27** | [Une API objet en Java](/api-java/) | Choix du langage, projet Maven, CI dès le premier commit |
+| **S28** | [Modéliser le domaine](/api-java/modeliser-poo) | Encapsulation, invariants, immuabilité, `equals`/`hashCode` |
+| **S29** | [Abstraction & polymorphisme](/api-java/abstraction-polymorphisme) | Classe abstraite, interface, inversion de dépendance |
+| **S30** | [Exposer une API REST](/api-java/api-rest) | Couches, DTO, validation, codes HTTP |
+| **S31** | [Tester l'API](/api-java/tester-api) | JUnit 5, Mockito, MockMvc, JaCoCo |
+| **S32** | 🧪 [**TP 5 — Livrer l'API**](/tp/tp5-api-livree) | Dockerfile multi-étapes, publication conditionnée |
 
-### S30 — Soutenance
+### S33 — Soutenance
 
 Démonstration en direct, sur le dépôt de l'équipe :
 
 1. ouvrir une PR qui dégrade la couverture, montrer le blocage ;
 2. corriger, faire passer la CI au vert, fusionner ;
 3. montrer l'image publiée et l'exécuter ;
-4. justifier **deux** choix de conception objet (pourquoi cette interface, pourquoi ce `record`).
+4. justifier **deux** choix de conception objet, **diagramme de classes à l'appui**.
 
 ::: tip Ce qui est évalué
 La **chaîne** et la **conception**, pas la richesse fonctionnelle. Une API à trois routes avec un domaine bien modélisé et un pipeline exigeant vaut mieux qu'une application ambitieuse déployée à la main.
 :::
 
-## Caler les 30 séances sur l'année
+## Caler les 33 séances sur l'année
 
-Une année scolaire offre environ 30 semaines utilisables — le compte est juste. Anticipez :
+Une année scolaire offre environ 30 semaines utilisables : **33 séances dépassent ce cadre de trois semaines**. Deux façons de retomber sur ses pieds — soit vous disposez de plus de 2 h hebdomadaires, soit vous traitez trois séances en autonomie guidée (S22 analyse statique, S26 diagrammes dynamiques et S30 API REST se prêtent bien à un travail préparé à la maison, repris en début de séance suivante).
+
+Dans tous les cas, anticipez :
 
 | Point de vigilance | Conduite à tenir |
 | --- | --- |
 | Bloc 4 (S7–S11) | Le plus dense : prévoyez une séance de battement |
-| Périodes de stage | Le bloc 8 supporte mal la discontinuité — évitez de le couper |
+| Périodes de stage | Le bloc 9 supporte mal la discontinuité — évitez de le couper |
 | Reprise après vacances | Les réglages GitHub et les quotas s'oublient vite |
-| Java en S24 | Faites reconstruire le Dev Container **avant** la séance |
+| Java en S27 | Faites reconstruire le Dev Container **avant** la séance |
 
 ### Trois moments d'évaluation
 
 - **Après S9** — chaîne Git + CI. Le TP 1 sert de support noté.
 - **Après S23** — qualité logicielle. Le TP 4 est évalué sur pièces (PR rouge puis verte, rapport).
-- **En S30** — soutenance du projet d'API.
+- **En S33** — soutenance du projet d'API, diagrammes à l'appui.
 
 ### Si vous disposez de moins de temps
 
 | Volume | Ce que l'on garde |
 | --- | --- |
-| **~46 h (23 séances)** | Partie 1 complète, sans le bloc API |
-| **~40 h (20 séances)** | S1–S16 puis le bloc 8 : la chaîne et l'API, sans DevSecOps ni qualité |
+| **~60 h (30 séances)** | Tout sauf S22, S26 et S30, traitées en autonomie guidée |
+| **~46 h (23 séances)** | Partie 1 complète, sans UML ni bloc API |
+| **~40 h (20 séances)** | S1–S16, S25 puis le bloc 9 : la chaîne, le diagramme de classes et l'API |
 | **~30 h (15 séances)** | S1–S13 et S20–S21 : Git, CI, publication, tests et couverture |
 | **~12 h (6 séances)** | S1, S2, S3, S7, S8, S9 : le socle Git + intégration continue |
 
@@ -167,12 +185,16 @@ Les deux blocs à ne jamais sacrifier sont le **4** et le **7** : sans intégrat
                                             S20 ─► S21 ─► S22 ─► S23
                                                                   │
                                                                   ▼
-                                     S24 ─► S25 ─► S26 ─► S27 ─► S28 ─► S29 ─► S30
+                                     S24 ─► S25 ─► S26        (UML)
+                                                     │
+                                                     ▼
+                              S27 ─► S28 ─► S29 ─► S30 ─► S31 ─► S32 ─► S33
 ```
 
 - **S5–S6 (Codespaces)** peuvent être avancées ou reportées — sauf si vous comptez faire le bloc 8, qui suppose un Dev Container maîtrisé.
 - **S12–S13 (Pages)** et **S14–S16 (conteneurs)** sont indépendantes l'une de l'autre. Si le temps manque, gardez les conteneurs : le TP 5 en dépend.
-- **S20–S23 (qualité)** doivent précéder **S28**, qui applique couverture et seuils au code Java.
-- **S24 → S29** forment une chaîne stricte : chaque séance part du code de la précédente.
+- **S20–S23 (qualité)** doivent précéder **S31**, qui applique couverture et seuils au code Java.
+- **S24–S26 (UML)** peuvent être traitées plus tôt dans l'année ; elles ne dépendent que de la notion de Pull Request. Les placer juste avant le bloc Java a l'avantage d'enchaîner modèle et code.
+- **S27 → S32** forment une chaîne stricte : chaque séance part du code de la précédente.
 
 Prêt ? Commencez par [préparer votre compte GitHub](/introduction/preparer-github).

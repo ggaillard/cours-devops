@@ -14,7 +14,7 @@ Les TP ne sont pas un bloc de fin de parcours : chacun occupe **une séance enti
 | **S13** | [TP 2](/tp/tp2-site-pages) | Publier un site sur Pages | Build, artefact Pages, déploiement continu |
 | **S16** | [TP 3](/tp/tp3-image-ghcr) | Publier une image sur GHCR | Dockerfile, GHCR, permissions, tags |
 | **S23** | [TP 4](/tp/tp4-qualite-ci) | Durcir la chaîne CI | Couverture, seuils bloquants, quality gate |
-| **S29** | [TP 5](/tp/tp5-api-livree) | Livrer l'API par le pipeline | POO, JaCoCo, image multi-étapes, publication conditionnée |
+| **S32** | [TP 5](/tp/tp5-api-livree) | Livrer l'API par le pipeline | POO, JaCoCo, image multi-étapes, publication conditionnée |
 
 Chaque TP suppose acquise la séance de cours qui le précède : il n'introduit aucune notion nouvelle, il met en situation.
 

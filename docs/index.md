@@ -45,6 +45,10 @@ features:
     title: Qualité & tests
     details: Pyramide des tests, couverture de code et quality gate — faire d'un pipeline qui signale un pipeline qui refuse.
     link: /qualite/
+  - icon: 📐
+    title: Modélisation UML
+    details: "Cas d'utilisation, classes, séquence, états, déploiement — des diagrammes écrits en texte, versionnés et relus en Pull Request."
+    link: /uml/
   - icon: ☕
     title: API objet en Java
     details: Encapsulation, polymorphisme, abstraction — une API REST conçue en objet, testée et livrée par la chaîne complète.
@@ -64,8 +68,8 @@ Aucune machine virtuelle à provisionner, aucun serveur à administrer, aucun lo
    (versionner,      (coder dans      (CI/CD sans   (publier un site,   (sécuriser
     collaborer)       le cloud)        serveur)      une image)          la chaîne)
                                                                               │
-                          ⑦ API objet en Java  ◄──  ⑥ Qualité & tests  ◄──────┘
-                          (POO, REST, livraison)    (pyramide, couverture)
+      ⑧ API objet en Java ◄── ⑦ UML ◄── ⑥ Qualité & tests ◄─────────────────┘
+      (POO, REST, livraison)   (concevoir) (pyramide, couverture)
 ```
 
 | Séances | Section | Ce que vous apprenez | Niveau |
@@ -77,8 +81,9 @@ Aucune machine virtuelle à provisionner, aucun serveur à administrer, aucun lo
 | S14–S16 | [Conteneurs (GHCR)](/conteneurs/) | Construire et publier une image de conteneur | 🔴 Avancé |
 | S17–S19 | [DevSecOps](/securite/) | Intégrer la sécurité dans le dépôt et les pipelines | 🔴 Avancé |
 | S20–S23 | [Qualité & tests](/qualite/) | Tester juste, mesurer la couverture, bloquer le code insuffisant | 🔴 Avancé |
-| S24–S30 | [API objet en Java](/api-java/) | Concevoir en objet une API REST et la livrer par le pipeline | 🔴 Avancé |
+| S24–S26 | [Modélisation UML](/uml/) | Concevoir et documenter avec les diagrammes utilisés en entreprise | 🟡 Intermédiaire |
+| S27–S33 | [API objet en Java](/api-java/) | Concevoir en objet une API REST et la livrer par le pipeline | 🔴 Avancé |
 
 > **Première visite ?** Commencez par l'[introduction au DevOps](/introduction/), puis suivez les sections dans l'ordre.
-> Le cours est organisé en **30 séances de 2 h** : chaque page annonce ses objectifs et se termine par une auto-évaluation.
+> Le cours est organisé en **33 séances de 2 h** : chaque page annonce ses objectifs et se termine par une auto-évaluation.
 > Voir [la progression complète](/introduction/parcours).

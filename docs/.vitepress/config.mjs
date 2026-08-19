@@ -1,7 +1,8 @@
 import { defineConfig } from 'vitepress'
+import { withMermaid } from 'vitepress-plugin-mermaid'
 
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+export default withMermaid(defineConfig({
   lang: 'fr-FR',
   title: 'Cours DevOps',
   description: 'Cours DevOps : Git, CI/CD, conteneurs, DevSecOps, qualité logicielle et API objet en Java.',
@@ -40,6 +41,7 @@ export default defineConfig({
           { text: 'DevSecOps', link: '/securite/' },
           { text: 'Déploiement', link: '/deploiement/' },
           { text: 'Qualité & tests', link: '/qualite/' },
+          { text: 'UML', link: '/uml/' },
           { text: 'API en Java', link: '/api-java/' },
           { text: 'Les TP', link: '/tp/' },
         ],
@@ -130,14 +132,23 @@ export default defineConfig({
         ],
       },
       {
+        text: 'Modélisation UML',
+        collapsed: false,
+        items: [
+          { text: 'S24 · Modéliser avec UML', link: '/uml/' },
+          { text: 'S25 · Diagramme de classes', link: '/uml/classes' },
+          { text: 'S26 · Diagrammes dynamiques', link: '/uml/dynamique' },
+        ],
+      },
+      {
         text: 'API objet en Java',
         collapsed: false,
         items: [
-          { text: 'S24 · Mise en place', link: '/api-java/' },
-          { text: 'S25 · Modéliser le domaine', link: '/api-java/modeliser-poo' },
-          { text: 'S26 · Abstraction & polymorphisme', link: '/api-java/abstraction-polymorphisme' },
-          { text: 'S27 · Exposer une API REST', link: '/api-java/api-rest' },
-          { text: "S28 · Tester l'API", link: '/api-java/tester-api' },
+          { text: 'S27 · Mise en place', link: '/api-java/' },
+          { text: 'S28 · Modéliser le domaine', link: '/api-java/modeliser-poo' },
+          { text: 'S29 · Abstraction & polymorphisme', link: '/api-java/abstraction-polymorphisme' },
+          { text: 'S30 · Exposer une API REST', link: '/api-java/api-rest' },
+          { text: "S31 · Tester l'API", link: '/api-java/tester-api' },
         ],
       },
       {
@@ -149,7 +160,7 @@ export default defineConfig({
           { text: 'S13 · TP 2 — Site sur Pages', link: '/tp/tp2-site-pages' },
           { text: 'S16 · TP 3 — Image GHCR', link: '/tp/tp3-image-ghcr' },
           { text: 'S23 · TP 4 — Durcir la CI', link: '/tp/tp4-qualite-ci' },
-          { text: "S29 · TP 5 — Livrer l'API", link: '/tp/tp5-api-livree' },
+          { text: "S32 · TP 5 — Livrer l'API", link: '/tp/tp5-api-livree' },
         ],
       },
     ],
@@ -201,4 +212,4 @@ export default defineConfig({
     sidebarMenuLabel: 'Menu',
     returnToTopLabel: 'Haut de page',
   },
-})
+}))

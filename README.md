@@ -5,7 +5,7 @@
 [![CodeQL](https://github.com/ggaillard/cours-devops/actions/workflows/codeql.yml/badge.svg)](https://github.com/ggaillard/cours-devops/actions/workflows/codeql.yml)
 [![Licence: CC BY-NC-SA 4.0](https://img.shields.io/badge/licence-CC%20BY--NC--SA%204.0-lightgrey.svg)](LICENSE)
 
-De la première ligne de code à la mise en production automatisée : **30 séances de 2 h**, sans installation locale.
+De la première ligne de code à la mise en production automatisée : **33 séances de 2 h**, sans installation locale.
 Site en ligne : **https://ggaillard.github.io/cours-devops/**
 
 ## Contenu
@@ -21,6 +21,7 @@ Site en ligne : **https://ggaillard.github.io/cours-devops/**
 | DevSecOps | Dependabot, CodeQL, secret scanning |
 | Déploiement | CD vers un service en ligne + stratégies |
 | Qualité & tests | Pyramide des tests, couverture de code, quality gate |
+| Modélisation UML | Cas d'utilisation, classes, séquence, états, déploiement — en Mermaid/PlantUML |
 | API objet en Java | POO, API REST Spring Boot, JUnit/Mockito/JaCoCo, livraison |
 | TP | 5 travaux pratiques transversaux |
 
@@ -29,8 +30,8 @@ Site en ligne : **https://ggaillard.github.io/cours-devops/**
 Le cours se lit en deux parties, décrites dans [le parcours](https://ggaillard.github.io/cours-devops/introduction/parcours.html) :
 
 - **S1 – S23 — la chaîne DevOps** : Git, CI/CD, conteneurs, sécurité, puis qualité logicielle.
-- **S24 – S30 — une API objet en Java** : conception orientée objet, API REST, tests, livraison
-  par le pipeline construit en première partie.
+- **S24 – S33 — concevoir puis livrer** : modélisation UML, conception orientée objet en Java,
+  API REST, tests, livraison par le pipeline construit en première partie.
 
 Chaque page annonce ses objectifs et se termine par une auto-évaluation.
 
@@ -46,6 +47,7 @@ Chaque notion enseignée est appliquée ici, et l'étudiant peut lire le fichier
 | Image conteneur + GHCR | [`Dockerfile`](Dockerfile) · [`.github/workflows/ghcr.yml`](.github/workflows/ghcr.yml) |
 | Analyse CodeQL | [`.github/workflows/codeql.yml`](.github/workflows/codeql.yml) |
 | Dependabot | [`.github/dependabot.yml`](.github/dependabot.yml) |
+| Diagrammes UML versionnés | [`docs/uml/`](docs/uml) — écrits en Mermaid, rendus par GitHub |
 | Gabarits Issues / PR | [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE) · [`.github/pull_request_template.md`](.github/pull_request_template.md) |
 
 ## Technologie

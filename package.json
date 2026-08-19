@@ -3,25 +3,14 @@
   "version": "1.0.0",
   "description": "Cours DevOps 100% en ligne (GitHub-natif) — BTS SIO",
   "type": "module",
-  "license": "CC-BY-NC-SA-4.0",
-  "homepage": "https://ggaillard.github.io/cours-devops/",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ggaillard/cours-devops.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ggaillard/cours-devops/issues"
-  },
-  "engines": {
-    "node": ">=20"
-  },
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
-    "check": "vitepress build docs"
+    "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
-    "vitepress": "^1.6.4"
+    "mermaid": "^11.16.1",
+    "vitepress": "^1.6.4",
+    "vitepress-plugin-mermaid": "^2.0.17"
   }
 }

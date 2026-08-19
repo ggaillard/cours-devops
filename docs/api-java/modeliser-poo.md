@@ -1,6 +1,6 @@
 # Modéliser le domaine en objets
 
-::: info 🎯 Séance 25 · 2 h
+::: info 🎯 Séance 28 · 2 h
 À la fin de cette séance, vous savez :
 
 - écrire une classe qui protège son état par l'encapsulation ;
@@ -16,6 +16,32 @@
 Avant toute API, il faut un **domaine** : les objets qui représentent le métier. Cette séance ne contient volontairement aucune ligne de Spring. Une bonne conception objet ne dépend d'aucun framework — et c'est justement ce qui la rend durable.
 
 Le métier retenu : une entreprise de services informatiques suit des **interventions** chez ses clients.
+
+Voici ce que nous allons écrire, sous la forme vue en [séance 25](/uml/classes) :
+
+```mermaid
+classDiagram
+    class Client {
+        -String identifiant
+        -String nom
+        -String email
+        +changerEmail(String) void
+        +nom() String
+        +email() String
+    }
+    class Adresse {
+        <<record>>
+        -String rue
+        -String codePostal
+        -String ville
+        +enUneLigne() String
+    }
+    Client "1" *-- "1" Adresse : composition
+```
+
+Le diagramme énonce déjà deux décisions : tous les attributs sont **privés**, et `Adresse` est
+un `record` en **composition** — une adresse n'existe pas sans son client. Le code qui suit ne
+fait que les appliquer.
 
 ## L'encapsulation : protéger l'état
 

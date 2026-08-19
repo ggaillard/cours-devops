@@ -1,6 +1,6 @@
 # Une API objet en Java
 
-::: info 🎯 Séance 24 · 2 h
+::: info 🎯 Séance 27 · 2 h
 À la fin de cette séance, vous savez :
 
 - justifier le choix de Java pour un projet orienté objet livré en continu ;

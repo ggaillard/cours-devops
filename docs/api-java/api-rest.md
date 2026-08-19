@@ -1,6 +1,6 @@
 # Exposer une API REST
 
-::: info 🎯 Séance 27 · 2 h
+::: info 🎯 Séance 30 · 2 h
 À la fin de cette séance, vous savez :
 
 - exposer un domaine objet derrière une API REST avec Spring Boot ;
@@ -35,6 +35,36 @@ Le domaine est écrit et testé. Il ne sait rien du web — c'est voulu. On lui 
 ```
 
 La règle qui structure tout : **chaque couche ignore celle du dessus**. Le service ne sait pas qu'une requête HTTP existe ; le domaine ne sait pas qu'un service l'utilise. C'est ce qui permet de tester le métier sans serveur, et de remplacer l'API REST par une interface en ligne de commande sans rien réécrire.
+
+Le [diagramme de séquence](/uml/dynamique) de la création, avec ses deux issues :
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Tech as Technicien
+    participant C as InterventionControleur
+    participant S as ServiceIntervention
+    participant D as DepotInterventions
+
+    Tech->>C: POST /api/interventions
+    C->>C: valider la requête (@Valid)
+    C->>S: creer(requete)
+    S->>D: parReference("I1")
+
+    alt référence déjà utilisée
+        D-->>S: Optional.of(existante)
+        S-->>C: IllegalStateException
+        C-->>Tech: 409 Conflict
+    else référence libre
+        D-->>S: Optional.empty()
+        S->>D: enregistrer(intervention)
+        S-->>C: intervention
+        C-->>Tech: 201 Created + Location
+    end
+```
+
+Chaque branche `alt` annonce un test à écrire — vous les retrouverez en
+[séance 31](/api-java/tester-api).
 
 ## Mettre en place Spring Boot
 

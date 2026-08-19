@@ -1,6 +1,6 @@
 # Abstraction, interfaces & polymorphisme
 
-::: info 🎯 Séance 26 · 2 h
+::: info 🎯 Séance 29 · 2 h
 À la fin de cette séance, vous savez :
 
 - remplacer une cascade de conditions par du polymorphisme ;
@@ -14,6 +14,52 @@
 :::
 
 L'encapsulation protège l'état. Le **polymorphisme** organise le comportement. C'est ce qui distingue une conception objet d'un programme procédural écrit avec des classes.
+
+La cible de la séance, en un diagramme :
+
+```mermaid
+classDiagram
+    class Intervention {
+        <<abstract>>
+        -String reference
+        -Client client
+        #double heures
+        +cout()* double
+        +libelle()* String
+    }
+    class Depannage {
+        +cout() double
+        +libelle() String
+    }
+    class Maintenance {
+        +cout() double
+        +libelle() String
+    }
+    class Installation {
+        -double coutMateriel
+        +cout() double
+        +libelle() String
+    }
+    class DepotInterventions {
+        <<interface>>
+        +enregistrer(Intervention) void
+        +parReference(String) Optional
+        +parClient(String) List
+    }
+    class ServiceIntervention {
+        -DepotInterventions depot
+        +chiffreAffairesClient(String) double
+    }
+
+    Intervention <|-- Depannage
+    Intervention <|-- Maintenance
+    Intervention <|-- Installation
+    ServiceIntervention --> DepotInterventions : dépend de
+```
+
+Deux choses s'y lisent immédiatement : `cout()` est **abstraite** (chaque sous-classe la
+redéfinit), et `ServiceIntervention` pointe vers l'**interface**, jamais vers une base de
+données. Ce sont les deux idées de la séance.
 
 ## Le problème : la cascade de `if`
 

@@ -1,6 +1,6 @@
 # Tester l'API
 
-::: info 🎯 Séance 28 · 2 h
+::: info 🎯 Séance 31 · 2 h
 À la fin de cette séance, vous savez :
 
 - appliquer la pyramide des tests à un projet Java réel ;
@@ -58,7 +58,7 @@ class DepannageTest {
 
 ## Niveau 2 — Le service, avec une doublure
 
-Le service dépend de `DepotInterventions`. On peut soit écrire une implémentation en mémoire (séance 26), soit la simuler avec **Mockito**.
+Le service dépend de `DepotInterventions`. On peut soit écrire une implémentation en mémoire (séance 29), soit la simuler avec **Mockito**.
 
 ```java
 @ExtendWith(MockitoExtension.class)

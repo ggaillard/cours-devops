@@ -219,4 +219,4 @@ Sans protection de branche, la CI est un **avis** : rien n'empêche de fusionner
 - ☐ la couverture de branches finale dépasse 75 %
 - ☐ la fusion est impossible tant que le job `qualite` n'est pas vert
 
-Le socle qualité est en place. Appliquons-le maintenant à un vrai projet : [une API objet](/api-java/).
+Le socle qualité est en place. Avant de coder un vrai projet, apprenons à le concevoir : [Modéliser avec UML](/uml/).
