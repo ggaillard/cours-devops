@@ -13,7 +13,7 @@ Ce module ne porte pas de numéro de séance : il ne fait pas partie des 32 séa
 **Durée indicative :** 1 h de lecture, 30 min de manipulation.
 :::
 
-Vous avez passé trente séances à faire une chose : **rendre le logiciel reproductible et vérifiable**. Versionner, tester, construire, livrer, surveiller. Ces pratiques ont un nom — DevOps — et elles reposent sur une hypothèse discrète.
+Vous avez passé trente-deux séances à faire une chose : **rendre le logiciel reproductible et vérifiable**. Versionner, tester, construire, livrer, surveiller. Ces pratiques ont un nom — DevOps — et elles reposent sur une hypothèse discrète.
 
 Cette hypothèse, c'est que **le code est la seule chose qui change**.
 

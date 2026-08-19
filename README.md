@@ -50,6 +50,7 @@ Chaque notion enseignée est appliquée ici, et l'étudiant peut lire le fichier
 | Analyse CodeQL | [`.github/workflows/codeql.yml`](.github/workflows/codeql.yml) |
 | Dependabot | [`.github/dependabot.yml`](.github/dependabot.yml) |
 | Diagrammes UML versionnés | [`docs/uml/`](docs/uml) — écrits en Mermaid, rendus par GitHub |
+| Démonstration DataOps / MLOps | [`demo/dataops-mlops/`](demo/dataops-mlops) |
 | Gabarits Issues / PR | [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE) · [`.github/pull_request_template.md`](.github/pull_request_template.md) |
 
 ## Technologie

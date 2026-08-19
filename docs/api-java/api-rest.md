@@ -30,7 +30,7 @@ Le domaine est écrit et testé. Il ne sait rien du web — c'est voulu. On lui 
    └────────┬─────────┘
             ▼
    ┌──────────────────┐   Dépôt : accès aux données
-   │  DepotInterventions │  (interface — séance 26)
+   │  DepotInterventions │  (interface — séance 28)
    └──────────────────┘
 ```
 

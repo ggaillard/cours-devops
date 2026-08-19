@@ -159,7 +159,7 @@ Dans tous les cas, anticipez :
 | --- | --- |
 | **~60 h (30 séances)** | Tout sauf S22 et S29, traitées en autonomie guidée |
 | **~46 h (23 séances)** | Partie 1 complète, sans UML ni bloc API |
-| **~40 h (20 séances)** | S1–S16 puis S24–S28 : la chaîne, la modélisation et la conception objet |
+| **~42 h (21 séances)** | S1–S16 puis S24–S28 : la chaîne, la modélisation et la conception objet |
 | **~30 h (15 séances)** | S1–S13 et S20–S21 : Git, CI, publication, tests et couverture |
 | **~12 h (6 séances)** | S1, S2, S3, S7, S8, S9 : le socle Git + intégration continue |
 
