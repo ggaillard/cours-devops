@@ -1,23 +1,27 @@
 # Modéliser le domaine en objets
 
-::: info 🎯 Séance 28 · 2 h
+::: info 🎯 Séance 26 · 2 h
 À la fin de cette séance, vous savez :
 
+- lire et écrire la notation UML d'une classe : compartiments, visibilité, opérations ;
 - écrire une classe qui protège son état par l'encapsulation ;
 - garantir qu'un objet ne peut pas exister dans un état incohérent ;
-- choisir entre une classe mutable et un `record` immuable ;
-- redéfinir `equals`, `hashCode` et `toString` à bon escient.
+- choisir entre une classe mutable et un `record` immuable, et le noter au diagramme.
 
-**Prérequis :** [Une API objet en Java](/api-java/)
+**Prérequis :** [Une API objet en Java](/api-java/) et [Modéliser avec UML](/uml/)
 
-**Livrable attendu :** les classes du domaine, avec leurs tests unitaires, sans aucune dépendance à un framework
+**Livrable attendu :** le diagramme de classes du domaine **et** les classes correspondantes, avec leurs tests
 :::
 
 Avant toute API, il faut un **domaine** : les objets qui représentent le métier. Cette séance ne contient volontairement aucune ligne de Spring. Une bonne conception objet ne dépend d'aucun framework — et c'est justement ce qui la rend durable.
 
 Le métier retenu : une entreprise de services informatiques suit des **interventions** chez ses clients.
 
-Voici ce que nous allons écrire, sous la forme vue en [séance 25](/uml/classes) :
+Chaque notion de POO est présentée avec **sa notation UML** : le diagramme n'est pas une illustration ajoutée après coup, c'est la façon dont on énonce la décision avant de l'écrire en Java.
+
+## La notation UML d'une classe
+
+Une classe se dessine en trois compartiments : le nom, les attributs, les opérations.
 
 ```mermaid
 classDiagram
@@ -25,27 +29,32 @@ classDiagram
         -String identifiant
         -String nom
         -String email
+        +Client(String, String, String)
         +changerEmail(String) void
         +nom() String
         +email() String
+        -exigerEmailValide(String)$ String
     }
-    class Adresse {
-        <<record>>
-        -String rue
-        -String codePostal
-        -String ville
-        +enUneLigne() String
-    }
-    Client "1" *-- "1" Adresse : composition
 ```
 
-Le diagramme énonce déjà deux décisions : tous les attributs sont **privés**, et `Adresse` est
-un `record` en **composition** — une adresse n'existe pas sans son client. Le code qui suit ne
-fait que les appliquer.
+### La visibilité
+
+| Symbole | Portée | Java |
+| --- | --- | --- |
+| `+` | Public — accessible de partout | `public` |
+| `-` | Privé — la classe seule | `private` |
+| `#` | Protégé — la classe et ses sous-classes | `protected` |
+| `~` | Paquetage | (défaut) |
+
+Ce petit tableau porte l'essentiel de la séance. Un diagramme où **tous les attributs sont `+`** signale une conception qui a oublié l'encapsulation : on le voit d'un coup d'œil, avant même d'ouvrir le code. Les attributs se notent `-`, les opérations qui forment le contrat public se notent `+`.
+
+::: tip Le soulignement
+Un membre **souligné** est `static` : il appartient à la classe, pas aux instances. En Mermaid, on l'écrit avec un `$` final — ci-dessus, `exigerEmailValide` est une méthode de validation partagée, privée et statique.
+:::
 
 ## L'encapsulation : protéger l'état
 
-Voici ce qu'il ne faut pas écrire :
+Voici ce que le diagramme précédent interdit d'écrire :
 
 ```java
 public class Client {
@@ -59,7 +68,7 @@ client.email = "";            // rien ne l'interdit
 client.nom = null;            // l'objet devient incohérent
 ```
 
-La version encapsulée :
+La version conforme au diagramme :
 
 ```java
 package fr.btssio.interventions.domaine;
@@ -102,9 +111,9 @@ public class Client {
 }
 ```
 
-Quatre décisions à relever :
+Quatre décisions à relever, toutes lisibles sur le diagramme :
 
-- **`private`** — l'état n'est accessible que par le code de la classe.
+- **`private`** (`-` au diagramme) — l'état n'est accessible que par le code de la classe.
 - **`final` sur `identifiant`** — une identité ne change jamais après création.
 - **La validation est dans le constructeur** — il devient impossible d'obtenir un `Client` invalide.
 - **`changerEmail` plutôt que `setEmail`** — le nom décrit une intention métier, et la validation est rejouée à chaque modification.
@@ -133,7 +142,20 @@ Dans le premier cas, la règle est répétée partout et sera oubliée un jour. 
 
 ## Les `record` : objets immuables
 
-Quand un objet ne fait que **porter des données** sans changer, Java offre une écriture condensée :
+Quand un objet ne fait que **porter des données** sans changer, Java offre une écriture condensée. En UML, on le signale par un **stéréotype** :
+
+```mermaid
+classDiagram
+    class Adresse {
+        <<record>>
+        -String rue
+        -String codePostal
+        -String ville
+        +enUneLigne() String
+    }
+```
+
+Le stéréotype `<<record>>` — entre doubles chevrons — précise la **nature** de l'élément. Vous rencontrerez de la même façon `<<interface>>`, `<<abstract>>` ou `<<enumeration>>`.
 
 ```java
 public record Adresse(String rue, String codePostal, String ville) {
@@ -198,6 +220,14 @@ Pour une entité, l'égalité doit porter sur l'**identité métier** :
 Si `a.equals(b)` est vrai, alors `a.hashCode() == b.hashCode()` **doit** l'être aussi. Rompre ce contrat produit des bugs redoutables : un objet rangé dans un `HashMap` devient introuvable, un `Set` accepte deux fois le même élément. Redéfinissez toujours les deux ensemble — ou utilisez un `record`, qui s'en charge.
 :::
 
+## Ce qu'on ne met pas dans un diagramme de classes
+
+Un diagramme exhaustif est illisible et faux au bout d'une semaine. Trois règles :
+
+- **Une vue = une question.** Un diagramme pour le domaine, un autre pour l'architecture en couches. Pas un seul pour tout.
+- **Pas de getters/setters.** Ils encombrent sans rien apprendre. On ne montre que les opérations qui portent du sens métier — `changerEmail` oui, `getNom` non.
+- **Pas les classes techniques.** Les DTO, les contrôleurs et les classes utilitaires n'ont rien à faire dans un diagramme de **domaine**.
+
 ## Tester le domaine
 
 Ces classes ne dépendent de rien : leurs tests sont instantanés.
@@ -252,23 +282,27 @@ Le `<scope>test</scope>` garantit que JUnit ne partira jamais en production.
 
 Répondez de mémoire avant de déplier la correction.
 
-::: details 1. Pourquoi valider dans le constructeur plutôt que dans un `setNom` ?
+::: details 1. Que révèle un diagramme de classes dont tous les attributs sont notés `+` ?
+Que l'encapsulation a été oubliée : l'état interne est modifiable de l'extérieur sans passer par aucune validation. C'est un défaut de conception repérable **avant** de lire une ligne de code — l'un des intérêts concrets du diagramme en revue. Les attributs se notent `-`, seules les opérations du contrat public se notent `+`.
+:::
+
+::: details 2. Pourquoi valider dans le constructeur plutôt que dans un `setNom` ?
 Parce que le constructeur est le **seul** passage obligé pour créer l'objet. Valider ailleurs laisse toujours un chemin où la règle est oubliée. En validant à la construction, un objet invalide ne peut littéralement pas exister — et le reste du code n'a plus jamais à s'en soucier.
 :::
 
-::: details 2. Classe ou `record` pour représenter une intervention qui peut changer de statut ?
-Une **classe**. Un `record` est immuable : changer le statut imposerait de recréer l'objet entier, ce qui n'a pas de sens pour une entité qui vit dans le temps et possède une identité. Le `record` convient pour les valeurs (une adresse, un montant, un DTO de réponse).
+::: details 3. Classe ou `record` pour représenter une intervention qui change de statut ?
+Une **classe**. Un `record` est immuable : changer le statut imposerait de recréer l'objet entier, ce qui n'a pas de sens pour une entité qui vit dans le temps et possède une identité. Le `record` convient pour les valeurs — une adresse, un montant, un DTO de réponse — et se note `<<record>>` au diagramme.
 :::
 
-::: details 3. Que se passe-t-il si l'on redéfinit `equals` sans `hashCode` ?
+::: details 4. Que se passe-t-il si l'on redéfinit `equals` sans `hashCode` ?
 Deux objets peuvent être « égaux » tout en ayant des empreintes différentes. Rangés dans un `HashMap` ou un `HashSet`, ils atterrissent dans des compartiments distincts : on ne retrouve plus un objet qu'on vient d'insérer, et un `Set` contient deux exemplaires de la même chose. Le bug est silencieux et très pénible à diagnostiquer.
 :::
 
 **Critères de réussite de la séance**
 
-- ☐ aucun champ n'est `public`
+- ☐ aucun attribut n'est `public`, ni dans le code ni sur le diagramme
 - ☐ chaque validation métier vit dans le constructeur
+- ☐ le diagramme ne contient ni getter, ni setter, ni classe technique
 - ☐ `equals` et `hashCode` sont redéfinis ensemble, ou remplacés par un `record`
-- ☐ les tests du domaine s'exécutent en moins d'une seconde
 
-Ajoutons de l'abstraction : [Abstraction, interfaces & polymorphisme](/api-java/abstraction-polymorphisme).
+Relions maintenant ces objets entre eux : [Associations & cycle de vie](/api-java/associations-cycle-vie).

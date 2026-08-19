@@ -1,6 +1,6 @@
 # Une API objet en Java
 
-::: info 🎯 Séance 27 · 2 h
+::: info 🎯 Séance 25 · 2 h
 À la fin de cette séance, vous savez :
 
 - justifier le choix de Java pour un projet orienté objet livré en continu ;
@@ -8,7 +8,7 @@
 - exploiter VS Code pour Java : exécution, débogage, navigation ;
 - faire construire ce projet par une CI dès le premier commit.
 
-**Prérequis :** [Dev Containers](/codespaces/dev-containers) et [Intégration continue](/actions/integration-continue)
+**Prérequis :** [Dev Containers](/codespaces/dev-containers) et [Modéliser avec UML](/uml/)
 
 **Livrable attendu :** un projet Maven qui se compile dans un Codespace **et** dans la CI
 :::

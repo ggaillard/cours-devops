@@ -1,24 +1,40 @@
-# Abstraction, interfaces & polymorphisme
+# Abstraction & polymorphisme
 
-::: info 🎯 Séance 29 · 2 h
+::: info 🎯 Séance 28 · 2 h
 À la fin de cette séance, vous savez :
 
+- distinguer généralisation et réalisation, au diagramme comme en Java ;
 - remplacer une cascade de conditions par du polymorphisme ;
 - choisir entre classe abstraite et interface ;
-- dépendre d'une abstraction plutôt que d'une implémentation ;
-- injecter une dépendance et mesurer ce que cela apporte aux tests.
+- dépendre d'une abstraction, et le rendre visible sur le diagramme.
 
-**Prérequis :** [Modéliser le domaine en objets](/api-java/modeliser-poo)
+**Prérequis :** [Associations & cycle de vie](/api-java/associations-cycle-vie)
 
-**Livrable attendu :** une hiérarchie d'interventions polymorphe et un service testable sans base de données
+**Livrable attendu :** une hiérarchie d'interventions polymorphe, son diagramme, et un service testable sans base de données
 :::
 
 L'encapsulation protège l'état. Le **polymorphisme** organise le comportement. C'est ce qui distingue une conception objet d'un programme procédural écrit avec des classes.
 
-La cible de la séance, en un diagramme :
+## Généralisation et réalisation
+
+Deux relations verticales, souvent confondues, et qui se distinguent au trait :
+
+| Notation | Nom | Sens | Java |
+| --- | --- | --- | --- |
+| `<\|--` trait **plein** | **Généralisation** | « est un » | `extends` |
+| `<\|..` trait **pointillé** | **Réalisation** | « sait faire » | `implements` |
+
+`Depannage` **est une** `Intervention` : généralisation. `Intervention` **sait être** `Facturable` : réalisation. Les deux flèches montent vers l'élément le plus général — c'est la nature du trait qui les sépare.
+
+Voici la cible de la séance :
 
 ```mermaid
 classDiagram
+    class Facturable {
+        <<interface>>
+        +cout() double
+        +coutTTC() double
+    }
     class Intervention {
         <<abstract>>
         -String reference
@@ -40,26 +56,20 @@ classDiagram
         +cout() double
         +libelle() String
     }
-    class DepotInterventions {
-        <<interface>>
-        +enregistrer(Intervention) void
-        +parReference(String) Optional
-        +parClient(String) List
-    }
-    class ServiceIntervention {
-        -DepotInterventions depot
-        +chiffreAffairesClient(String) double
-    }
 
+    Facturable <|.. Intervention : réalise
     Intervention <|-- Depannage
     Intervention <|-- Maintenance
     Intervention <|-- Installation
-    ServiceIntervention --> DepotInterventions : dépend de
 ```
 
-Deux choses s'y lisent immédiatement : `cout()` est **abstraite** (chaque sous-classe la
-redéfinit), et `ServiceIntervention` pointe vers l'**interface**, jamais vers une base de
-données. Ce sont les deux idées de la séance.
+Trois conventions à repérer :
+
+- **`<<abstract>>` et `<<interface>>`** sont des stéréotypes : ils précisent la nature de l'élément.
+- **Une opération suivie d'une `*`** (en italique dans la notation officielle) est **abstraite** : déclarée sans corps, chaque sous-classe doit la fournir. C'est le cas de `cout()` et `libelle()`.
+- **`#heures`** est `protected` : accessible aux sous-classes qui en ont besoin pour calculer, fermé au reste du monde.
+
+Ce diagramme tient en quinze lignes et remplace trois pages d'explications. Il dit aussi ce qu'il faut coder — passons-y.
 
 ## Le problème : la cascade de `if`
 
@@ -84,7 +94,7 @@ Ce code fonctionne. Il pose trois problèmes :
 
 - **Ajouter un type impose de modifier cette classe**, et toutes celles qui contiennent une cascade semblable — souvent dispersées dans l'application.
 - **Le compilateur ne vous aide pas.** Oublier un `else if` produit une exception à l'exécution, en production.
-- **Les données et le comportement sont séparés.** `Intervention` doit exposer `getHeures()`, `getMateriel()`, `getType()` : l'encapsulation de la séance précédente est perdue.
+- **Les données et le comportement sont séparés.** `Intervention` doit exposer `getHeures()`, `getMateriel()`, `getType()` : l'encapsulation de la séance 26 est perdue.
 
 ## La solution : le polymorphisme
 
@@ -218,7 +228,8 @@ La cascade de `if` a disparu — mais surtout, **ajouter un type ne modifie plus
 | Rôle | « **est un** » : partage un état et du code | « **sait faire** » : contrat de comportement |
 | État | Peut porter des champs | Aucun champ d'instance |
 | Héritage | Une seule par classe | Autant qu'on veut |
-| Exemple ici | `Intervention` | `DepotInterventions` |
+| Au diagramme | `<<abstract>>`, trait plein | `<<interface>>`, trait pointillé |
+| Exemple ici | `Intervention` | `Facturable`, `DepotInterventions` |
 
 La règle pratique : une **classe abstraite** quand il y a du code et de l'état à partager entre des variantes d'une même chose ; une **interface** quand on décrit une capacité que des classes très différentes peuvent offrir.
 
@@ -289,6 +300,33 @@ public class ServiceIntervention {
 
 C'est l'**inversion de dépendance** : le service ne choisit pas son dépôt, on le lui fournit. Il ignore s'il parle à PostgreSQL, à un fichier ou à une simple `Map`.
 
+## La conception se lit sur le diagramme
+
+```mermaid
+classDiagram
+    class DepotInterventions {
+        <<interface>>
+        +enregistrer(Intervention) void
+        +parReference(String) Optional
+        +parClient(String) List
+    }
+    class ServiceIntervention {
+        -DepotInterventions depot
+        +chiffreAffairesClient(String) double
+        +enregistrer(Intervention) Intervention
+    }
+    class DepotEnMemoire {
+        -Map donnees
+    }
+    class DepotPostgres
+
+    ServiceIntervention --> DepotInterventions : dépend de
+    DepotInterventions <|.. DepotEnMemoire
+    DepotInterventions <|.. DepotPostgres
+```
+
+Une chose mérite d'être remarquée : `ServiceIntervention` pointe vers l'**interface**, jamais vers une implémentation. C'est l'inversion de dépendance **visible sur le dessin**. Un relecteur qui verrait une flèche du service vers `DepotPostgres` saurait immédiatement que la conception est fautive — sans lire une ligne de code.
+
 ## Le bénéfice se voit dans les tests
 
 ```java
@@ -346,23 +384,27 @@ Si le service instanciait lui-même `DepotPostgres`, tester `chiffreAffairesClie
 
 Répondez de mémoire avant de déplier la correction.
 
-::: details 1. Que gagne-t-on concrètement à supprimer la cascade de `if` ?
+::: details 1. Quelle différence entre le trait plein et le trait pointillé montant vers une classe ?
+Le trait **plein** est une **généralisation** : « est un », traduite par `extends`. Le trait **pointillé** est une **réalisation** : « sait faire », traduite par `implements`. `Depannage` est une `Intervention` ; `Intervention` sait être `Facturable`. La confusion est fréquente parce que les deux flèches montent — seule la nature du trait les distingue.
+:::
+
+::: details 2. Que gagne-t-on concrètement à supprimer la cascade de `if` ?
 L'ajout d'un quatrième type ne modifie plus aucun code existant : on écrit une classe, elle s'insère. On supprime aussi le risque d'oublier une branche quelque part dans l'application, et l'on peut refermer l'encapsulation — les getters exposés uniquement pour nourrir le calcul externe redeviennent inutiles.
 :::
 
-::: details 2. Classe abstraite ou interface pour représenter « ce qui peut être facturé » ?
-Une **interface**. « Facturable » est une capacité, pas une nature : une intervention, un abonnement et une formation peuvent tous être facturables sans partager le moindre état. La classe abstraite conviendrait si toutes ces choses étaient des variantes d'un même concept, avec du code commun.
+::: details 3. Classe abstraite ou interface pour représenter « ce qui peut être facturé » ?
+Une **interface**, notée `<<interface>>` et reliée par un trait pointillé. « Facturable » est une capacité, pas une nature : une intervention, un abonnement et une formation peuvent tous être facturables sans partager le moindre état. La classe abstraite conviendrait si toutes ces choses étaient des variantes d'un même concept, avec du code commun.
 :::
 
-::: details 3. Pourquoi passer le dépôt au constructeur plutôt que l'instancier dans le service ?
-Parce que cela rend le service **testable et réutilisable**. En le fournissant de l'extérieur, on peut injecter une implémentation en mémoire pour les tests, PostgreSQL en production, une version simulée pour une démonstration — sans toucher une ligne du service. C'est l'inversion de dépendance, et c'est exactement ce que fera l'injection automatique de Spring à la séance suivante.
+::: details 4. Comment repère-t-on une inversion de dépendance ratée sur un diagramme ?
+À la flèche partant du service. Si elle pointe vers une classe concrète d'accès aux données — `DepotPostgres` — la dépendance n'est pas inversée : le service est soudé à son implémentation et deviendra intestable sans base. Elle doit pointer vers l'interface, les implémentations se rattachant à celle-ci par des traits pointillés.
 :::
 
 **Critères de réussite de la séance**
 
 - ☐ aucune cascade de `if` sur un type d'intervention
+- ☐ le diagramme distingue correctement `<|--` et `<|..`
 - ☐ le service ne mentionne aucune classe d'accès aux données
 - ☐ les tests du service tournent sans base de données
-- ☐ je sais dire, pour chaque abstraction écrite, si c'est un « est un » ou un « sait faire »
 
 Exposons maintenant ce domaine : [Exposer une API REST](/api-java/api-rest).

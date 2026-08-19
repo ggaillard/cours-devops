@@ -1,6 +1,6 @@
 # Exposer une API REST
 
-::: info 🎯 Séance 30 · 2 h
+::: info 🎯 Séance 29 · 2 h
 À la fin de cette séance, vous savez :
 
 - exposer un domaine objet derrière une API REST avec Spring Boot ;
@@ -8,7 +8,7 @@
 - valider les entrées et renvoyer le bon code HTTP ;
 - centraliser le traitement des erreurs.
 
-**Prérequis :** [Abstraction, interfaces & polymorphisme](/api-java/abstraction-polymorphisme)
+**Prérequis :** [Abstraction & polymorphisme](/api-java/abstraction-polymorphisme)
 
 **Livrable attendu :** une API à quatre routes, testée au navigateur ou avec `curl`, gérant les erreurs proprement
 :::
@@ -36,7 +36,7 @@ Le domaine est écrit et testé. Il ne sait rien du web — c'est voulu. On lui 
 
 La règle qui structure tout : **chaque couche ignore celle du dessus**. Le service ne sait pas qu'une requête HTTP existe ; le domaine ne sait pas qu'un service l'utilise. C'est ce qui permet de tester le métier sans serveur, et de remplacer l'API REST par une interface en ligne de commande sans rien réécrire.
 
-Le [diagramme de séquence](/uml/dynamique) de la création, avec ses deux issues :
+La collaboration entre les trois couches, avec ses deux issues — la notation est détaillée en [séance 30](/api-java/tester-api) :
 
 ```mermaid
 sequenceDiagram
@@ -63,8 +63,8 @@ sequenceDiagram
     end
 ```
 
-Chaque branche `alt` annonce un test à écrire — vous les retrouverez en
-[séance 31](/api-java/tester-api).
+Chaque branche `alt` annonce un test à écrire — vous les écrirez en
+[séance 30](/api-java/tester-api).
 
 ## Mettre en place Spring Boot
 

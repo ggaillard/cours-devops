@@ -47,11 +47,11 @@ features:
     link: /qualite/
   - icon: 📐
     title: Modélisation UML
-    details: "Cas d'utilisation, classes, séquence, états, déploiement — des diagrammes écrits en texte, versionnés et relus en Pull Request."
+    details: "Cas d'utilisation, activité, déploiement — des diagrammes écrits en texte, versionnés et relus en Pull Request. Classes, états et séquence sont vus avec la POO qu'ils servent."
     link: /uml/
   - icon: ☕
-    title: API objet en Java
-    details: Encapsulation, polymorphisme, abstraction — une API REST conçue en objet, testée et livrée par la chaîne complète.
+    title: Conception objet & API
+    details: Encapsulation, associations, polymorphisme — chaque notion arrive avec le diagramme UML qui l'exprime, jusqu'à l'API livrée par la chaîne.
     link: /api-java/
 ---
 
@@ -68,8 +68,9 @@ Aucune machine virtuelle à provisionner, aucun serveur à administrer, aucun lo
    (versionner,      (coder dans      (CI/CD sans   (publier un site,   (sécuriser
     collaborer)       le cloud)        serveur)      une image)          la chaîne)
                                                                               │
-      ⑧ API objet en Java ◄── ⑦ UML ◄── ⑥ Qualité & tests ◄─────────────────┘
-      (POO, REST, livraison)   (concevoir) (pyramide, couverture)
+      ⑧ Conception objet ◄── ⑦ UML ◄── ⑥ Qualité & tests ◄───────────────────┘
+      (POO + diagrammes,      (système)  (pyramide, couverture)
+       REST, livraison)
 ```
 
 | Séances | Section | Ce que vous apprenez | Niveau |
@@ -81,9 +82,9 @@ Aucune machine virtuelle à provisionner, aucun serveur à administrer, aucun lo
 | S14–S16 | [Conteneurs (GHCR)](/conteneurs/) | Construire et publier une image de conteneur | 🔴 Avancé |
 | S17–S19 | [DevSecOps](/securite/) | Intégrer la sécurité dans le dépôt et les pipelines | 🔴 Avancé |
 | S20–S23 | [Qualité & tests](/qualite/) | Tester juste, mesurer la couverture, bloquer le code insuffisant | 🔴 Avancé |
-| S24–S26 | [Modélisation UML](/uml/) | Concevoir et documenter avec les diagrammes utilisés en entreprise | 🟡 Intermédiaire |
-| S27–S33 | [API objet en Java](/api-java/) | Concevoir en objet une API REST et la livrer par le pipeline | 🔴 Avancé |
+| S24 | [Modélisation UML](/uml/) | Cas d'utilisation, activité, déploiement — des diagrammes versionnés | 🟡 Intermédiaire |
+| S25–S32 | [Conception objet & API](/api-java/) | POO en Java, chaque notion avec son diagramme, API livrée par le pipeline | 🔴 Avancé |
 
 > **Première visite ?** Commencez par l'[introduction au DevOps](/introduction/), puis suivez les sections dans l'ordre.
-> Le cours est organisé en **33 séances de 2 h** : chaque page annonce ses objectifs et se termine par une auto-évaluation.
+> Le cours est organisé en **32 séances de 2 h** : chaque page annonce ses objectifs et se termine par une auto-évaluation.
 > Voir [la progression complète](/introduction/parcours).

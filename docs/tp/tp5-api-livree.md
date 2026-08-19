@@ -1,6 +1,6 @@
 # TP 5 — Livrer l'API par le pipeline
 
-::: info 🎯 Séance 32 · 2 h
+::: info 🎯 Séance 31 · 2 h
 À la fin de cette séance, vous savez :
 
 - enchaîner qualité, construction d'image et publication dans un seul pipeline ;

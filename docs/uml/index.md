@@ -4,9 +4,9 @@
 À la fin de cette séance, vous savez :
 
 - expliquer à quoi sert un modèle, et à quoi il ne sert pas ;
-- citer les diagrammes UML réellement utilisés en entreprise ;
 - écrire un diagramme **sous forme de code**, versionné et relu en Pull Request ;
-- produire un diagramme de cas d'utilisation à partir d'un besoin exprimé.
+- produire un diagramme de cas d'utilisation à partir d'un besoin exprimé ;
+- documenter un processus et une infrastructure par les diagrammes d'activité et de déploiement.
 
 **Prérequis :** [Branches & Pull Requests](/git-github/branches-pr)
 
@@ -15,7 +15,7 @@
 
 **UML** (*Unified Modeling Language*) est un langage graphique normalisé pour décrire un système logiciel. En entreprise, vous le rencontrerez dans les dossiers de conception, les spécifications et les revues d'architecture — et à l'examen.
 
-Le piège classique est d'en faire un exercice scolaire déconnecté du code. Cette section prend le parti inverse : les diagrammes seront **écrits en texte, versionnés dans le dépôt et relus en Pull Request**, exactement comme le reste du projet.
+Cette séance traite les diagrammes qui décrivent le **système** : ce qu'il rend comme service, comment se déroulent ses processus, où il est installé. Les diagrammes de **conception objet** — classes, associations, états, séquence — ne sont pas relégués dans un chapitre à part : ils sont enseignés avec la notion de POO qu'ils servent, à partir de la [séance 26](/api-java/modeliser-poo).
 
 ## À quoi sert un modèle
 
@@ -35,17 +35,18 @@ Un diagramme est une **simplification volontaire**. Il ne remplace pas le code, 
 
 ## Les diagrammes qui comptent
 
-UML 2 en définit quatorze. Dans la vie professionnelle, cinq couvrent l'essentiel :
+UML 2 en définit quatorze. Dans la vie professionnelle, six couvrent l'essentiel — et ce cours les traite là où ils servent :
 
-| Diagramme | Répond à | Séance |
+| Diagramme | Répond à | Traité en |
 | --- | --- | --- |
 | **Cas d'utilisation** | Qui fait quoi avec le système ? | S24 (ici) |
-| **Classes** | De quoi est fait le système ? | [S25](/uml/classes) |
-| **Séquence** | Comment les objets collaborent dans le temps ? | [S26](/uml/dynamique) |
-| **États** | Quel est le cycle de vie d'un objet ? | [S26](/uml/dynamique) |
-| **Déploiement** | Où tourne quoi ? | [S26](/uml/dynamique) |
+| **Activité** | Quel est l'enchaînement du processus ? | S24 (ici) |
+| **Déploiement** | Où tourne quoi ? | S24 (ici) |
+| **Classes** | De quoi est fait le système ? | [S26](/api-java/modeliser-poo) et [S28](/api-java/abstraction-polymorphisme) |
+| **États** | Quel est le cycle de vie d'un objet ? | [S27](/api-java/associations-cycle-vie) |
+| **Séquence** | Comment les objets collaborent dans le temps ? | [S30](/api-java/tester-api) |
 
-Les neuf autres (composants, paquetages, communication, temps…) existent, sont légitimes, et servent rarement. Mieux vaut maîtriser cinq diagrammes que d'en reconnaître quatorze.
+Les huit autres (composants, paquetages, communication, temps…) existent, sont légitimes, et servent rarement. Mieux vaut maîtriser six diagrammes que d'en reconnaître quatorze.
 
 ## Le diagramme comme code
 
@@ -182,6 +183,75 @@ Deux relations à ne pas confondre :
 - **Mettre la base de données en acteur.** Un acteur est extérieur et **déclenche** l'action. La base est un composant interne.
 - **Confondre acteur et personne.** « Marie » n'est pas un acteur, « Technicien » l'est. Une même personne peut jouer deux rôles.
 
+## Le diagramme d'activité
+
+Il décrit un **enchaînement d'actions**, avec ses décisions et ses parallélismes. Proche de l'organigramme, il documente aussi bien un processus métier qu'un pipeline de CI.
+
+```mermaid
+flowchart TD
+    A([Push sur une branche]) --> B[Installer les dépendances]
+    B --> C{Lint et format<br/>conformes ?}
+    C -->|non| X([❌ CI rouge])
+    C -->|oui| D[Tests unitaires]
+    D --> E{Tests verts ?}
+    E -->|non| X
+    E -->|oui| F[Mesurer la couverture]
+    F --> G{Couverture<br/>≥ seuil ?}
+    G -->|non| X
+    G -->|oui| H{Branche main ?}
+    H -->|non| Y([✅ CI verte, pas de publication])
+    H -->|oui| I[Construire l'image]
+    I --> J[Publier sur GHCR]
+    J --> Z([✅ Image publiée])
+```
+
+C'est exactement le pipeline du [TP 5](/tp/tp5-api-livree), sous une forme discutable en réunion. Un diagramme d'activité est souvent le meilleur moyen de faire valider une chaîne d'automatisation par quelqu'un qui ne lira jamais le YAML.
+
+| Élément | Notation |
+| --- | --- |
+| Nœud initial / final | forme arrondie |
+| Action | rectangle |
+| Décision | losange, avec les conditions sur les flèches |
+
+## Le diagramme de déploiement
+
+Il montre **où tourne quoi** : quel artefact est installé sur quel nœud, et par quels protocoles ils communiquent. C'est le diagramme le plus proche des préoccupations DevOps.
+
+```mermaid
+flowchart TB
+    subgraph poste["💻 Poste client"]
+        nav["Navigateur"]
+    end
+
+    subgraph github["☁️ GitHub"]
+        actions["GitHub Actions<br/>(runner ubuntu-latest)"]
+        ghcr[("GHCR<br/>ghcr.io/.../api-interventions:1.0.0")]
+        pages["GitHub Pages<br/>(site du cours)"]
+    end
+
+    subgraph heberg["🖥️ Serveur d'hébergement"]
+        conteneur["Conteneur Docker<br/>eclipse-temurin:21-jre<br/>api-interventions.jar"]
+        bdd[("PostgreSQL")]
+    end
+
+    nav -->|HTTPS| conteneur
+    nav -->|HTTPS| pages
+    actions -->|docker push| ghcr
+    ghcr -->|docker pull| conteneur
+    conteneur -->|JDBC 5432| bdd
+    actions -->|deploy| pages
+```
+
+Trois informations qu'aucun autre diagramme ne porte :
+
+- **la version déployée** (`1.0.0`) — celle qui relie le code à ce qui tourne réellement ;
+- **les protocoles et ports** — HTTPS vers l'API, JDBC 5432 vers la base ;
+- **les frontières d'infrastructure** — ce qui est chez GitHub, ce qui est chez l'hébergeur.
+
+::: tip Le diagramme qu'on regarde en incident
+C'est celui-ci. À 3 h du matin, la question n'est pas « quelles sont les classes ? » mais « qui parle à quoi, et par où ». Un diagramme de déploiement à jour fait gagner un temps considérable — et se maintient facilement puisqu'il change rarement.
+:::
+
 ## Où ranger les diagrammes
 
 ```
@@ -189,7 +259,7 @@ docs/
 └── conception/
     ├── cas-utilisation.md      ← le diagramme et son explication
     ├── classes.md
-    └── sequences.md
+    └── deploiement.md
 ```
 
 Les placer dans `docs/` les fait apparaître sur le site généré : la documentation de conception est **publiée en même temps que le code**, par le même pipeline. C'est le principe de la [séance 12](/pages/deployer-site) appliqué à la conception.
@@ -212,6 +282,10 @@ Elle l'**inclut** : l'authentification est obligatoire et a lieu à chaque consu
 C'est une action d'interface, pas un service métier. Le cas d'utilisation décrit la valeur rendue à un acteur — ici « Consulter les interventions d'un client » — indépendamment de la façon dont l'écran est fait. Formuler le diagramme en termes d'écrans le rend obsolète à la première refonte de l'interface.
 :::
 
+::: details 4. Pourquoi le diagramme de déploiement intéresse-t-il particulièrement le DevOps ?
+Parce qu'il est le seul à montrer l'exécution réelle : quelle version d'image tourne sur quel nœud, par quels ports transitent les échanges, où passe la frontière entre l'infrastructure gérée et celle du fournisseur. C'est la vue qu'on consulte pendant un incident, et celle qui permet de raisonner sur la sécurité réseau.
+:::
+
 **Critères de réussite de la séance**
 
 - ☐ le diagramme est un fichier texte commité, pas une image
@@ -219,4 +293,4 @@ C'est une action d'interface, pas un service métier. Le cas d'utilisation décr
 - ☐ au moins une relation `include` est justifiée
 - ☐ le diagramme a été relu par un binôme en Pull Request
 
-Passons au diagramme central de la conception objet : [Le diagramme de classes](/uml/classes).
+Passons au code — et aux diagrammes qui l'accompagnent : [Une API objet en Java](/api-java/).
