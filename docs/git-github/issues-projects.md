@@ -7,6 +7,8 @@
 - relier une Issue à la Pull Request qui la résout ;
 - organiser un lot de travail dans un tableau de suivi.
 
+**Socle :** les sections marquées 🚀 sont **hors socle** — voir [socle et approfondissement](/introduction/parcours).
+
 **Prérequis :** [Branches & Pull Requests](/git-github/branches-pr)
 
 **Livrable attendu :** cinq Issues étiquetées, un Project alimenté, et une PR fermant une Issue par `Closes #n`
@@ -70,6 +72,38 @@ Vous savez désormais :
 - ✅ versionner avec des commits ;
 - ✅ collaborer avec branches et Pull Requests ;
 - ✅ organiser le travail avec Issues et Projects.
+
+## 🚀 Approfondissement — Automatiser le tableau
+
+*Hors socle : cette section n'est pas exigible de tous. Elle se traite en autonomie, ou avec les étudiants qui avancent vite.*
+
+Un tableau que l'on met à jour à la main finit toujours par mentir : quelqu'un oublie de déplacer une carte, et le tableau ne reflète plus la réalité. L'automatisation existe pour ça.
+
+**Relier une Pull Request à son issue.** Écrivez dans la description de la PR :
+
+```text
+Closes #42
+```
+
+À la fusion, GitHub ferme l'issue 42 automatiquement. Les mots reconnus sont `Closes`, `Fixes`, `Resolves`, suivis du numéro. Le lien apparaît dans les deux sens : depuis l'issue, on voit la PR qui la traite.
+
+**Faire bouger les cartes toutes seules.** Dans un Project, `⋯ → Workflows` propose des règles prêtes à activer :
+
+| Quand | La carte passe à |
+| --- | --- |
+| Une issue est ouverte | `Todo` |
+| Une Pull Request est ouverte | `In progress` |
+| Une issue ou une PR est fermée | `Done` |
+
+Activez les trois. Le tableau devient alors une **conséquence** du travail réel, plus une déclaration d'intention.
+
+**Ajouter les champs qui manquent.** Un Project accepte des champs personnalisés : `Priorité` (liste de choix), `Estimation` (nombre), `Échéance` (date). Deux ou trois suffisent — un tableau à douze colonnes n'est plus rempli au bout d'une semaine.
+
+**Regarder le même travail autrement.** Un même Project accepte plusieurs vues : *Board* pour le suivi quotidien, *Table* pour trier et filtrer, *Roadmap* pour situer dans le temps. Ce sont trois affichages des mêmes cartes, pas trois tableaux à tenir.
+
+::: tip Le lien avec ce que vous apprendrez ensuite
+C'est le même raisonnement que l'intégration continue : ce qui dépend d'un geste humain finit par ne pas être fait. Automatiser l'état du tableau, c'est automatiser la vérité sur l'avancement.
+:::
 
 ---
 

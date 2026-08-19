@@ -194,6 +194,18 @@ Vérifiez : une nouvelle PR qui dégrade la couverture ne peut plus être fusion
 - Publiez le résumé de couverture dans `$GITHUB_STEP_SUMMARY` (voir [Couverture](/qualite/couverture)).
 - Branchez SonarCloud et activez la condition sur le **code neuf**.
 
+## Barème — 20 points
+
+| Ligne | Points | Ce qui est observé sur ce TP |
+| --- | --- | --- |
+| **Le livrable fonctionne** | 8 | la couverture est mesurée et le seuil est réellement bloquant |
+| **Méthode Git** | 4 | branche dédiée, PR fusionnée, aucun commit direct sur `main` |
+| **Exigence de la chaîne** | 4 | une exécution **rouge puis verte** est montrée sur la même branche |
+| **Traçabilité du rendu** | 3 | rapport de couverture en artefact, seuil justifié par écrit |
+| **Compréhension** | 1 | sait dire ce que le seuil de couverture **ne garantit pas** |
+
+Le barème commun aux cinq TP et sa justification sont détaillés sur la [vue d'ensemble des TP](/tp/).
+
 ---
 
 ## Auto-évaluation

@@ -112,6 +112,18 @@ C'est le **déploiement continu** : le code validé arrive en ligne sans action 
 - Remplacez le HTML pur par un générateur (VitePress, Hugo) : ajoutez une étape `npm run build` et publiez le dossier de sortie (voir [Déployer un site statique](/pages/deployer-site)).
 - Ajoutez un **domaine personnalisé** (fichier `CNAME`).
 
+## Barème — 20 points
+
+| Ligne | Points | Ce qui est observé sur ce TP |
+| --- | --- | --- |
+| **Le livrable fonctionne** | 8 | le site est en ligne à son URL Pages et se met à jour après un push |
+| **Méthode Git** | 4 | branche dédiée, PR fusionnée, aucun commit direct sur `main` |
+| **Exigence de la chaîne** | 4 | le déploiement passe par Actions et par un artefact, jamais par un dépôt de fichiers à la main |
+| **Traçabilité du rendu** | 3 | lien du site dans le `README`, capture du déploiement réussi |
+| **Compréhension** | 1 | sait expliquer pourquoi `base` doit correspondre au nom du dépôt |
+
+Le barème commun aux cinq TP et sa justification sont détaillés sur la [vue d'ensemble des TP](/tp/).
+
 ---
 
 ## Auto-évaluation

@@ -6,7 +6,9 @@
 - expliquer à quoi sert un modèle, et à quoi il ne sert pas ;
 - écrire un diagramme **sous forme de code**, versionné et relu en Pull Request ;
 - produire un diagramme de cas d'utilisation à partir d'un besoin exprimé ;
-- documenter un processus et une infrastructure par les diagrammes d'activité et de déploiement.
+- 🚀 documenter un processus et une infrastructure par les diagrammes d'activité et de déploiement.
+
+**Socle :** les sections marquées 🚀 sont **hors socle** — voir [socle et approfondissement](/introduction/parcours).
 
 **Prérequis :** [Branches & Pull Requests](/git-github/branches-pr)
 
@@ -183,7 +185,9 @@ Deux relations à ne pas confondre :
 - **Mettre la base de données en acteur.** Un acteur est extérieur et **déclenche** l'action. La base est un composant interne.
 - **Confondre acteur et personne.** « Marie » n'est pas un acteur, « Technicien » l'est. Une même personne peut jouer deux rôles.
 
-## Le diagramme d'activité
+## 🚀 Approfondissement — Le diagramme d'activité
+
+*Hors socle : cette section n'est pas exigible de tous. Elle se traite en autonomie, ou avec les étudiants qui avancent vite.*
 
 Il décrit un **enchaînement d'actions**, avec ses décisions et ses parallélismes. Proche de l'organigramme, il documente aussi bien un processus métier qu'un pipeline de CI.
 
@@ -213,7 +217,9 @@ C'est exactement le pipeline du [TP 5](/tp/tp5-api-livree), sous une forme discu
 | Action | rectangle |
 | Décision | losange, avec les conditions sur les flèches |
 
-## Le diagramme de déploiement
+## 🚀 Approfondissement — Le diagramme de déploiement
+
+*Hors socle : cette section n'est pas exigible de tous. Elle se traite en autonomie, ou avec les étudiants qui avancent vite.*
 
 Il montre **où tourne quoi** : quel artefact est installé sur quel nœud, et par quels protocoles ils communiquent. C'est le diagramme le plus proche des préoccupations DevOps.
 

@@ -148,6 +148,18 @@ docker pull ghcr.io/VOTRE-COMPTE/tp-image-ghcr:latest
 
 Félicitations : vous avez parcouru l'ensemble de la chaîne DevOps **100 % en ligne** ! 🎉
 
+## Barème — 20 points
+
+| Ligne | Points | Ce qui est observé sur ce TP |
+| --- | --- | --- |
+| **Le livrable fonctionne** | 8 | l'image est publiée sur GHCR et s'exécute sur une autre machine que la sienne |
+| **Méthode Git** | 4 | branche dédiée, PR fusionnée, aucun commit direct sur `main` |
+| **Exigence de la chaîne** | 4 | `permissions: packages: write` justifié, publication conditionnée au `push` |
+| **Traçabilité du rendu** | 3 | deux tags cohérents dans Packages et sortie de `docker run` |
+| **Compréhension** | 1 | sait expliquer une ligne du `Dockerfile`, désignée au hasard |
+
+Le barème commun aux cinq TP et sa justification sont détaillés sur la [vue d'ensemble des TP](/tp/).
+
 ---
 
 ## Auto-évaluation

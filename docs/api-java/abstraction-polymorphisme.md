@@ -8,6 +8,8 @@
 - choisir entre classe abstraite et interface ;
 - dépendre d'une abstraction, et le rendre visible sur le diagramme.
 
+**Socle :** les sections marquées 🚀 sont **hors socle** — voir [socle et approfondissement](/introduction/parcours).
+
 **Prérequis :** [Associations & cycle de vie](/api-java/associations-cycle-vie)
 
 **Livrable attendu :** une hiérarchie d'interventions polymorphe, son diagramme, et un service testable sans base de données
@@ -300,7 +302,9 @@ public class ServiceIntervention {
 
 C'est l'**inversion de dépendance** : le service ne choisit pas son dépôt, on le lui fournit. Il ignore s'il parle à PostgreSQL, à un fichier ou à une simple `Map`.
 
-## La conception se lit sur le diagramme
+## 🚀 Approfondissement — La conception se lit sur le diagramme
+
+*Hors socle : cette section n'est pas exigible de tous. Elle se traite en autonomie, ou avec les étudiants qui avancent vite.*
 
 ```mermaid
 classDiagram
@@ -327,7 +331,9 @@ classDiagram
 
 Une chose mérite d'être remarquée : `ServiceIntervention` pointe vers l'**interface**, jamais vers une implémentation. C'est l'inversion de dépendance **visible sur le dessin**. Un relecteur qui verrait une flèche du service vers `DepotPostgres` saurait immédiatement que la conception est fautive — sans lire une ligne de code.
 
-## Le bénéfice se voit dans les tests
+## 🚀 Approfondissement — Le bénéfice se voit dans les tests
+
+*Hors socle : cette section n'est pas exigible de tous. Elle se traite en autonomie, ou avec les étudiants qui avancent vite.*
 
 ```java
 class ServiceInterventionTest {

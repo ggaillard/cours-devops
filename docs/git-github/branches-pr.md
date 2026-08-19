@@ -7,6 +7,8 @@
 - ouvrir une Pull Request lisible et mener une revue de code ;
 - choisir une stratégie de fusion et protéger la branche `main`.
 
+**Socle :** les sections marquées 🚀 sont **hors socle** — voir [socle et approfondissement](/introduction/parcours).
+
 **Prérequis :** [Les bases de Git](/git-github/bases-git)
 
 **Livrable attendu :** une Pull Request commentée par un camarade, puis fusionnée, et une règle de protection active sur `main`
@@ -75,6 +77,43 @@ Sur un vrai projet, on **protège** la branche `main` (**Settings → Branches �
 - exiger que la CI passe au vert avant fusion.
 
 C'est une pratique DevOps fondamentale : **rien n'atteint `main` sans avoir été vérifié**.
+
+## 🚀 Approfondissement — Résoudre un conflit de fusion
+
+*Hors socle : cette section n'est pas exigible de tous. Elle se traite en autonomie, ou avec les étudiants qui avancent vite.*
+
+Un conflit n'est pas une panne : c'est Git qui refuse de choisir à votre place. Il survient quand deux branches modifient **les mêmes lignes** du même fichier. Provoquez-en un volontairement, c'est le seul moyen de ne pas le découvrir un jour de rendu.
+
+**Le provoquer, en trois minutes, depuis le navigateur :**
+
+1. Sur `main`, modifiez la première ligne du `README` : écrivez `Version A`.
+2. Créez une branche `essai/conflit` **à partir de ce commit**, et sur cette branche remplacez la même ligne par `Version B`.
+3. Retournez sur `main` et remplacez encore la même ligne, par `Version C`.
+4. Ouvrez une Pull Request de `essai/conflit` vers `main`.
+
+GitHub affiche alors : **This branch has conflicts that must be resolved**.
+
+**Le lire.** Le fichier en conflit contient des marqueurs :
+
+```text
+<<<<<<< essai/conflit
+Version B
+=======
+Version C
+>>>>>>> main
+```
+
+Entre `<<<<<<<` et `=======` : ce que propose **votre** branche. Entre `=======` et `>>>>>>>` : ce qui se trouve déjà sur la branche cible. Les marqueurs eux-mêmes ne sont pas du contenu — ils doivent disparaître.
+
+**Le résoudre.** Écrivez la version finale — qui peut être l'une des deux, ou une troisième qui les combine — supprimez les trois lignes de marqueurs, puis validez. La Pull Request redevient fusionnable.
+
+::: danger Les deux erreurs classiques
+Laisser un marqueur `=======` dans le fichier — il part en production et casse tout ce qui lit le fichier. Et « résoudre » en écrasant systématiquement le travail de l'autre : un conflit se règle en comprenant les deux intentions, pas en choisissant la sienne par défaut.
+:::
+
+::: tip Ce qui évite la plupart des conflits
+Des branches **courtes**. Une branche qui vit trois jours diverge peu ; une branche qui vit trois semaines rencontre nécessairement le travail des autres. C'est un argument organisationnel, pas technique — et c'est le principal.
+:::
 
 ---
 

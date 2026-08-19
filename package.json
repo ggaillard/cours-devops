@@ -19,9 +19,13 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "check": "vitepress build docs"
+    "verifier:coherence": "node outils/verifier-coherence.mjs",
+    "verifier:diagrammes": "node outils/verifier-diagrammes.mjs",
+    "verifier": "npm run docs:build && npm run verifier:coherence && npm run verifier:diagrammes",
+    "check": "npm run verifier"
   },
   "devDependencies": {
+    "jsdom": "^30.0.1",
     "mermaid": "^11.16.1",
     "vitepress": "^1.6.4",
     "vitepress-plugin-mermaid": "^2.0.17"

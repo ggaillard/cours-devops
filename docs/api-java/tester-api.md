@@ -8,6 +8,8 @@
 - simuler une dépendance avec Mockito, et savoir quand s'en abstenir ;
 - mesurer la couverture avec JaCoCo et la rendre bloquante.
 
+**Socle :** les sections marquées 🚀 sont **hors socle** — voir [socle et approfondissement](/introduction/parcours).
+
 **Prérequis :** [Exposer une API REST](/api-java/api-rest) et [Couverture de code](/qualite/couverture)
 
 **Livrable attendu :** un diagramme de séquence, les tests qui en découlent, et un seuil JaCoCo qui fait échouer `mvn verify`
@@ -180,7 +182,9 @@ Le `verify(depot, never()).enregistrer(any())` est le plus instructif : il véri
 Mockito brille pour vérifier des **interactions** (« a-t-on bien appelé, et une seule fois ? »). Pour tester un enchaînement d'opérations, une implémentation en mémoire reste souvent plus lisible qu'une pile de `when(...)`. Un test noyé sous dix lignes de configuration Mockito est le signe qu'il faut changer d'approche — ou que le service en fait trop.
 :::
 
-## Niveau 3 — La couche web, sans serveur
+## 🚀 Approfondissement — Niveau 3 — La couche web, sans serveur
+
+*Hors socle : cette section n'est pas exigible de tous. Elle se traite en autonomie, ou avec les étudiants qui avancent vite.*
 
 `@WebMvcTest` ne charge que la couche HTTP : le contexte démarre en quelques centaines de millisecondes et aucun port n'est ouvert. **Les deux branches `alt` du diagramme deviennent deux tests** :
 
@@ -307,7 +311,9 @@ Les exclusions méritent un mot : la classe `Application` ne contient que le `ma
 Si la couverture reste sous le seuil, revenez aux diagrammes plutôt qu'au rapport. Le diagramme de **séquence** énumère les branches d'un scénario ; le diagramme d'**états** de la [séance 27](/api-java/associations-cycle-vie) énumère les transitions autorisées et interdites. Une branche non couverte y figure presque toujours.
 :::
 
-## Dans la CI
+## 🚀 Approfondissement — Dans la CI
+
+*Hors socle : cette section n'est pas exigible de tous. Elle se traite en autonomie, ou avec les étudiants qui avancent vite.*
 
 ```yaml
       - name: Construire, tester, vérifier la couverture

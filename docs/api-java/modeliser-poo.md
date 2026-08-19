@@ -8,6 +8,8 @@
 - garantir qu'un objet ne peut pas exister dans un état incohérent ;
 - choisir entre une classe mutable et un `record` immuable, et le noter au diagramme.
 
+**Socle :** les sections marquées 🚀 sont **hors socle** — voir [socle et approfondissement](/introduction/parcours).
+
 **Prérequis :** [Une API objet en Java](/api-java/) et [Modéliser avec UML](/uml/)
 
 **Livrable attendu :** le diagramme de classes du domaine **et** les classes correspondantes, avec leurs tests
@@ -185,7 +187,9 @@ Cette déclaration engendre automatiquement le constructeur, les accesseurs, `eq
 Un objet immuable est **partageable sans risque** : aucun appel ne peut le modifier dans votre dos, et il est sûr en contexte concurrent. Dans une API qui traite plusieurs requêtes simultanées, c'est une propriété qui évite une catégorie entière de bugs — les plus difficiles à reproduire.
 :::
 
-## `equals`, `hashCode`, `toString`
+## 🚀 Approfondissement — `equals`, `hashCode`, `toString`
+
+*Hors socle : cette section n'est pas exigible de tous. Elle se traite en autonomie, ou avec les étudiants qui avancent vite.*
 
 Par défaut, deux objets Java ne sont égaux que s'ils occupent la **même case mémoire** :
 
@@ -220,7 +224,9 @@ Pour une entité, l'égalité doit porter sur l'**identité métier** :
 Si `a.equals(b)` est vrai, alors `a.hashCode() == b.hashCode()` **doit** l'être aussi. Rompre ce contrat produit des bugs redoutables : un objet rangé dans un `HashMap` devient introuvable, un `Set` accepte deux fois le même élément. Redéfinissez toujours les deux ensemble — ou utilisez un `record`, qui s'en charge.
 :::
 
-## Ce qu'on ne met pas dans un diagramme de classes
+## 🚀 Approfondissement — Ce qu'on ne met pas dans un diagramme de classes
+
+*Hors socle : cette section n'est pas exigible de tous. Elle se traite en autonomie, ou avec les étudiants qui avancent vite.*
 
 Un diagramme exhaustif est illisible et faux au bout d'une semaine. Trois règles :
 

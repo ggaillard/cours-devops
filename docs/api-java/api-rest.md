@@ -6,7 +6,9 @@
 - exposer un domaine objet derrière une API REST avec Spring Boot ;
 - séparer entités et DTO, et dire pourquoi ;
 - valider les entrées et renvoyer le bon code HTTP ;
-- centraliser le traitement des erreurs.
+- 🚀 centraliser le traitement des erreurs.
+
+**Socle :** les sections marquées 🚀 sont **hors socle** — voir [socle et approfondissement](/introduction/parcours).
 
 **Prérequis :** [Abstraction & polymorphisme](/api-java/abstraction-polymorphisme)
 
@@ -239,7 +241,9 @@ Le code de retour fait partie du contrat de l'API. L'utiliser correctement évit
 Renvoyer `200 OK` avec un corps `{"erreur": "introuvable"}`. Le client doit alors analyser le corps pour savoir si sa requête a réussi — chaque client réinvente cette logique, et les outils intermédiaires (caches, supervision) sont trompés. Le code HTTP **est** le résultat.
 :::
 
-## Traiter les erreurs en un seul endroit
+## 🚀 Approfondissement — Traiter les erreurs en un seul endroit
+
+*Hors socle : cette section n'est pas exigible de tous. Elle se traite en autonomie, ou avec les étudiants qui avancent vite.*
 
 Sans configuration, une exception métier produit un `500`, ce qui est faux : la requête était invalide, pas le serveur.
 

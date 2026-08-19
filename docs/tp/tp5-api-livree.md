@@ -286,6 +286,18 @@ Le workflow republie l'image sous `1.0.0`. Vous savez désormais, pour toute ima
 - Ajoutez un `HEALTHCHECK` au Dockerfile en exposant `/actuator/health`.
 - Déployez l'image vers un hébergeur en ligne avec un [environnement à approbation](/deploiement/).
 
+## Barème — 20 points
+
+| Ligne | Points | Ce qui est observé sur ce TP |
+| --- | --- | --- |
+| **Le livrable fonctionne** | 8 | le pipeline enchaîne qualité, construction d'image et publication |
+| **Méthode Git** | 4 | branche dédiée, PR fusionnée, aucun commit direct sur `main` |
+| **Exigence de la chaîne** | 4 | `publier` ne démarre pas quand `qualite` échoue — démontré sur une PR |
+| **Traçabilité du rendu** | 3 | image sous 250 Mo, deux tags, exécution non-`root` prouvée |
+| **Compréhension** | 1 | sait justifier une décision de conception du domaine, diagramme à l'appui |
+
+Le barème commun aux cinq TP et sa justification sont détaillés sur la [vue d'ensemble des TP](/tp/).
+
 ---
 
 ## Auto-évaluation

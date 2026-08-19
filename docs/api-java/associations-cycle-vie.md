@@ -8,6 +8,8 @@
 - décrire le cycle de vie d'un objet par un diagramme d'états ;
 - transformer chaque transition en méthode métier qui vérifie son état de départ.
 
+**Socle :** les sections marquées 🚀 sont **hors socle** — voir [socle et approfondissement](/introduction/parcours).
+
 **Prérequis :** [Modéliser le domaine en objets](/api-java/modeliser-poo)
 
 **Livrable attendu :** les associations du domaine et un cycle de vie d'intervention codé sans `setStatut`
@@ -212,7 +214,9 @@ intervention.setStatut(StatutIntervention.FACTUREE);   // ❌ saute tout le cycl
 Un `setStatut` public laisse n'importe quel appelant passer de « planifiée » à « facturée » sans avoir jamais réalisé l'intervention. Le diagramme d'états **est** la liste des transitions autorisées : chacune mérite sa méthode, qui vérifie d'où l'on part. Toutes les autres sont interdites — et le code doit les refuser, pas seulement s'abstenir de les proposer.
 :::
 
-## Tester les transitions
+## 🚀 Approfondissement — Tester les transitions
+
+*Hors socle : cette section n'est pas exigible de tous. Elle se traite en autonomie, ou avec les étudiants qui avancent vite.*
 
 Le diagramme fournit directement la liste des tests : une transition autorisée, une transition interdite.
 

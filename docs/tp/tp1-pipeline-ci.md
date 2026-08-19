@@ -130,6 +130,18 @@ Désormais, impossible de fusionner si la CI échoue.
 - Ajoutez une **matrice** de versions Node (`18`, `20`, `22`) — voir [Matrices](/actions/matrices-artefacts).
 - Ajoutez une étape de **lint**.
 
+## Barème — 20 points
+
+| Ligne | Points | Ce qui est observé sur ce TP |
+| --- | --- | --- |
+| **Le livrable fonctionne** | 8 | le workflow s'exécute sur une Pull Request et passe au vert |
+| **Méthode Git** | 4 | branche dédiée, PR fusionnée, aucun commit direct sur `main` |
+| **Exigence de la chaîne** | 4 | un test volontairement cassé fait bien échouer la CI, capture à l'appui |
+| **Traçabilité du rendu** | 3 | badge de la CI dans le `README` et lien de l'exécution |
+| **Compréhension** | 1 | sait dire, sur son propre fichier, ce que déclenche `on:` et ce qu'attend `needs:` |
+
+Le barème commun aux cinq TP et sa justification sont détaillés sur la [vue d'ensemble des TP](/tp/).
+
 ---
 
 ## Auto-évaluation

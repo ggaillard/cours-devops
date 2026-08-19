@@ -44,7 +44,10 @@ export default withMermaid(defineConfig({
           { text: 'UML', link: '/uml/' },
           { text: 'Conception objet', link: '/api-java/' },
           { text: 'Les TP', link: '/tp/' },
+          { text: 'Soutenance', link: '/soutenance/' },
           { text: 'Aller plus loin', link: '/aller-plus-loin/' },
+          { text: 'Dépannage', link: '/depannage/' },
+          { text: 'Glossaire', link: '/glossaire/' },
         ],
       },
     ],
@@ -165,11 +168,27 @@ export default withMermaid(defineConfig({
         collapsed: false,
         items: [
           { text: 'Vue d’ensemble', link: '/tp/' },
+          { text: 'TP 0 — Contribuer au cours', link: '/tp/tp0-contribuer' },
           { text: 'S9 · TP 1 — Pipeline CI', link: '/tp/tp1-pipeline-ci' },
           { text: 'S13 · TP 2 — Site sur Pages', link: '/tp/tp2-site-pages' },
           { text: 'S16 · TP 3 — Image GHCR', link: '/tp/tp3-image-ghcr' },
           { text: 'S23 · TP 4 — Durcir la CI', link: '/tp/tp4-qualite-ci' },
           { text: "S31 · TP 5 — Livrer l'API", link: '/tp/tp5-api-livree' },
+        ],
+      },
+      {
+        text: 'Évaluation',
+        collapsed: false,
+        items: [
+          { text: 'S32 · Soutenance', link: '/soutenance/' },
+        ],
+      },
+      {
+        text: 'Références',
+        collapsed: true,
+        items: [
+          { text: 'Quand ça ne marche pas', link: '/depannage/' },
+          { text: 'Glossaire', link: '/glossaire/' },
         ],
       },
     ],

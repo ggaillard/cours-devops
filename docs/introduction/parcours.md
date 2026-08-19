@@ -121,7 +121,7 @@ Parce qu'il n'a de sens qu'attaché à une notion. La visibilité `-` se compren
 Même logique pour les diagrammes dynamiques : le **diagramme d'états** est en S27 parce qu'il dicte que les transitions soient des méthodes métier ; le **diagramme de séquence** est en S30 parce que chacune de ses branches `alt` est un test à écrire.
 :::
 
-### S32 — Soutenance
+### S32 — [Soutenance](/soutenance/)
 
 Démonstration en direct, sur le dépôt de l'équipe :
 
@@ -136,7 +136,26 @@ La **chaîne** et la **conception**, pas la richesse fonctionnelle. Une API à t
 
 ## Caler les 32 séances sur l'année
 
-Une année scolaire offre environ 30 semaines utilisables : **32 séances dépassent ce cadre de deux semaines**. Deux façons de retomber sur ses pieds — soit vous disposez de plus de 2 h hebdomadaires, soit vous traitez deux séances en autonomie guidée (S22 analyse statique et S29 API REST s'y prêtent bien : travail préparé à la maison, repris en début de séance suivante).
+Une année scolaire offre environ 30 semaines utilisables : **32 séances dépassent ce cadre de deux semaines**. Trois leviers, du moins au plus coûteux — le marquage socle / approfondissement ci-dessous, le traitement de deux séances en autonomie guidée (S22 analyse statique et S29 API REST s'y prêtent bien : travail préparé à la maison, repris en début de séance suivante), ou davantage que 2 h hebdomadaires.
+
+### Socle et approfondissement
+
+Les séances ne pèsent pas toutes le même poids. Certaines tiennent largement dans 2 h ; d'autres — la conception objet en particulier — en contiennent davantage. Plutôt que de découper artificiellement les unes et d'étirer les autres, les pages denses distinguent explicitement deux niveaux :
+
+| Marquage | Statut | Ce que ça veut dire pour vous |
+| --- | --- | --- |
+| *(non marqué)* | **Socle** | Exigible de tous. C'est ce sur quoi porte l'évaluation, et ce dont la séance suivante a besoin. |
+| **🚀 Approfondissement** | **Hors socle** | Peut être sauté sans compromettre la suite. Autonomie, étudiants en avance, ou reprise en fin d'année. |
+
+Une section marquée 🚀 le dit également dans son bandeau de tête, et les objectifs concernés portent le même marqueur.
+
+::: tip Ce n'est pas du contenu de seconde zone
+Une section hors socle n'est ni du remplissage ni un bonus facultatif : c'est souvent la partie la plus intéressante. Elle est marquée parce que la séance suivante ne s'appuie pas dessus — pas parce qu'elle vaut moins.
+:::
+
+Le mécanisme sert dans les deux sens. Sur les séances denses (S24, S26 à S30), il permet de tenir les 2 h en désignant ce qui peut attendre. Sur les séances plus légères (S3, S4, S6), il ajoute de la matière pour ceux qui finissent avant les autres — un conflit de fusion à résoudre, un tableau à automatiser, un Dev Container à enrichir — sans allonger la séance pour tout le monde.
+
+**En pratique, en début d'année :** annoncez la convention une fois, montrez un exemple de section 🚀, et dites clairement que l'évaluation ne porte que sur le socle. Sans cette annonce, le marqueur est lu comme « à faire aussi », et il ne sert plus à rien.
 
 Dans tous les cas, anticipez :
 
@@ -151,7 +170,7 @@ Dans tous les cas, anticipez :
 
 - **Après S9** — chaîne Git + CI. Le TP 1 sert de support noté.
 - **Après S23** — qualité logicielle. Le TP 4 est évalué sur pièces (PR rouge puis verte, rapport).
-- **En S32** — soutenance du projet d'API, diagrammes à l'appui.
+- **En S32** — [soutenance](/soutenance/) du projet d'API, diagrammes à l'appui. La grille sur 20 points est donnée aux étudiants dès la séance 25.
 
 ### Si vous disposez de moins de temps
 
