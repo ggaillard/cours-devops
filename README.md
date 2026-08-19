@@ -1,11 +1,11 @@
-# Cours DevOps — 
+# Cours DevOps
 
 [![Deploy](https://github.com/ggaillard/cours-devops/actions/workflows/deploy.yml/badge.svg)](https://github.com/ggaillard/cours-devops/actions/workflows/deploy.yml)
 [![CI](https://github.com/ggaillard/cours-devops/actions/workflows/ci.yml/badge.svg)](https://github.com/ggaillard/cours-devops/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/ggaillard/cours-devops/actions/workflows/codeql.yml/badge.svg)](https://github.com/ggaillard/cours-devops/actions/workflows/codeql.yml)
 [![Licence: CC BY-NC-SA 4.0](https://img.shields.io/badge/licence-CC%20BY--NC--SA%204.0-lightgrey.svg)](LICENSE)
 
-Cours DevOps **sans installation locale** : tout se fait dans le navigateur et sur GitHub.
+De la première ligne de code à la mise en production automatisée : **30 séances de 2 h**, sans installation locale.
 Site en ligne : **https://ggaillard.github.io/cours-devops/**
 
 ## Contenu
@@ -20,7 +20,19 @@ Site en ligne : **https://ggaillard.github.io/cours-devops/**
 | Conteneurs (GHCR) | Construire et publier une image sans Docker local |
 | DevSecOps | Dependabot, CodeQL, secret scanning |
 | Déploiement | CD vers un service en ligne + stratégies |
-| TP | 3 travaux pratiques transversaux |
+| Qualité & tests | Pyramide des tests, couverture de code, quality gate |
+| API objet en Java | POO, API REST Spring Boot, JUnit/Mockito/JaCoCo, livraison |
+| TP | 5 travaux pratiques transversaux |
+
+## Organisation
+
+Le cours se lit en deux parties, décrites dans [le parcours](https://ggaillard.github.io/cours-devops/introduction/parcours.html) :
+
+- **S1 – S23 — la chaîne DevOps** : Git, CI/CD, conteneurs, sécurité, puis qualité logicielle.
+- **S24 – S30 — une API objet en Java** : conception orientée objet, API REST, tests, livraison
+  par le pipeline construit en première partie.
+
+Chaque page annonce ses objectifs et se termine par une auto-évaluation.
 
 ## Le dépôt est lui-même le support du cours
 

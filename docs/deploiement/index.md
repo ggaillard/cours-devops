@@ -132,4 +132,4 @@ Parce que l'étape suivante est l'observation. Sans logs, métriques ni historiq
 - ☐ le déploiement en production requiert une approbation
 - ☐ aucun jeton de déploiement n'apparaît en clair dans le dépôt
 
-Chaque maillon repose sur GitHub, sans installation locale. Mettez tout en pratique avec [les TP](/tp/).
+Chaque maillon repose sur GitHub, sans installation locale. Reste à rendre ce pipeline **exigeant** : [Qualité & tests](/qualite/).

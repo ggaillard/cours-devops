@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: Cours DevOps
-  text: 100 % en ligne, centré GitHub
-  tagline: "Apprendre le DevOps sans installer quoi que ce soit sur sa machine — tout se passe dans le navigateur et sur GitHub."
+  text: Concevoir, tester et livrer en continu
+  tagline: "De la première ligne de code à la mise en production automatisée : la chaîne DevOps complète, puis une API objet livrée par le pipeline."
   actions:
     - theme: brand
       text: Commencer
@@ -41,6 +41,14 @@ features:
     title: DevSecOps
     details: "Sécuriser la chaîne : Dependabot, CodeQL, détection de secrets — la sécurité intégrée au dépôt."
     link: /securite/
+  - icon: 🧪
+    title: Qualité & tests
+    details: Pyramide des tests, couverture de code et quality gate — faire d'un pipeline qui signale un pipeline qui refuse.
+    link: /qualite/
+  - icon: ☕
+    title: API objet en Java
+    details: Encapsulation, polymorphisme, abstraction — une API REST conçue en objet, testée et livrée par la chaîne complète.
+    link: /api-java/
 ---
 
 ## Pourquoi ce cours ?
@@ -52,9 +60,12 @@ Aucune machine virtuelle à provisionner, aucun serveur à administrer, aucun lo
 ## Parcours en un coup d'œil
 
 ```
-① Git & GitHub  ──►  ② Codespaces  ──►  ③ GitHub Actions  ──►  ④ Pages / GHCR  ──►  ⑤ DevSecOps
-   (versionner,        (coder dans        (CI/CD sans          (publier un site,     (sécuriser
-    collaborer)         le cloud)          serveur)             une image)            la chaîne)
+① Git & GitHub ─► ② Codespaces ─► ③ Actions ─► ④ Pages / GHCR ─► ⑤ DevSecOps
+   (versionner,      (coder dans      (CI/CD sans   (publier un site,   (sécuriser
+    collaborer)       le cloud)        serveur)      une image)          la chaîne)
+                                                                              │
+                          ⑦ API objet en Java  ◄──  ⑥ Qualité & tests  ◄──────┘
+                          (POO, REST, livraison)    (pyramide, couverture)
 ```
 
 | Séances | Section | Ce que vous apprenez | Niveau |
@@ -65,7 +76,9 @@ Aucune machine virtuelle à provisionner, aucun serveur à administrer, aucun lo
 | S12–S13 | [GitHub Pages](/pages/) | Publier un site statique en continu | 🟡 Intermédiaire |
 | S14–S16 | [Conteneurs (GHCR)](/conteneurs/) | Construire et publier une image de conteneur | 🔴 Avancé |
 | S17–S19 | [DevSecOps](/securite/) | Intégrer la sécurité dans le dépôt et les pipelines | 🔴 Avancé |
+| S20–S23 | [Qualité & tests](/qualite/) | Tester juste, mesurer la couverture, bloquer le code insuffisant | 🔴 Avancé |
+| S24–S30 | [API objet en Java](/api-java/) | Concevoir en objet une API REST et la livrer par le pipeline | 🔴 Avancé |
 
 > **Première visite ?** Commencez par l'[introduction au DevOps](/introduction/), puis suivez les sections dans l'ordre.
-> Le cours est organisé en **24 séances de 2 h** : chaque page annonce ses objectifs et se termine par une auto-évaluation.
+> Le cours est organisé en **30 séances de 2 h** : chaque page annonce ses objectifs et se termine par une auto-évaluation.
 > Voir [la progression complète](/introduction/parcours).

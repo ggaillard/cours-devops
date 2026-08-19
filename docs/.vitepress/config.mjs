@@ -4,7 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   lang: 'fr-FR',
   title: 'Cours DevOps',
-  description: 'Cours DevOps 100 % en ligne, centré GitHub — CI/CD, conteneurs, DevSecOps, sans installation locale.',
+  description: 'Cours DevOps : Git, CI/CD, conteneurs, DevSecOps, qualité logicielle et API objet en Java.',
 
   // Nécessaire pour un site « projet » GitHub Pages : https://ggaillard.github.io/cours-devops/
   // Surchargeable via DOCS_BASE=/ pour servir le site à la racine (image conteneur).
@@ -39,6 +39,8 @@ export default defineConfig({
           { text: 'Conteneurs (GHCR)', link: '/conteneurs/' },
           { text: 'DevSecOps', link: '/securite/' },
           { text: 'Déploiement', link: '/deploiement/' },
+          { text: 'Qualité & tests', link: '/qualite/' },
+          { text: 'API en Java', link: '/api-java/' },
           { text: 'Les TP', link: '/tp/' },
         ],
       },
@@ -119,6 +121,26 @@ export default defineConfig({
         ],
       },
       {
+        text: 'Qualité & tests',
+        collapsed: false,
+        items: [
+          { text: 'S20 · La pyramide des tests', link: '/qualite/' },
+          { text: 'S21 · Couverture de code', link: '/qualite/couverture' },
+          { text: 'S22 · Analyse statique & quality gate', link: '/qualite/analyse-statique' },
+        ],
+      },
+      {
+        text: 'API objet en Java',
+        collapsed: false,
+        items: [
+          { text: 'S24 · Mise en place', link: '/api-java/' },
+          { text: 'S25 · Modéliser le domaine', link: '/api-java/modeliser-poo' },
+          { text: 'S26 · Abstraction & polymorphisme', link: '/api-java/abstraction-polymorphisme' },
+          { text: 'S27 · Exposer une API REST', link: '/api-java/api-rest' },
+          { text: "S28 · Tester l'API", link: '/api-java/tester-api' },
+        ],
+      },
+      {
         text: 'Les TP',
         collapsed: false,
         items: [
@@ -126,6 +148,8 @@ export default defineConfig({
           { text: 'S9 · TP 1 — Pipeline CI', link: '/tp/tp1-pipeline-ci' },
           { text: 'S13 · TP 2 — Site sur Pages', link: '/tp/tp2-site-pages' },
           { text: 'S16 · TP 3 — Image GHCR', link: '/tp/tp3-image-ghcr' },
+          { text: 'S23 · TP 4 — Durcir la CI', link: '/tp/tp4-qualite-ci' },
+          { text: "S29 · TP 5 — Livrer l'API", link: '/tp/tp5-api-livree' },
         ],
       },
     ],
@@ -167,7 +191,7 @@ export default defineConfig({
     },
 
     footer: {
-      message: 'Contenu pédagogique DevOps — 100 % en ligne, centré GitHub.',
+      message: 'Contenu pédagogique DevOps — BTS SIO.',
       copyright: 'BTS SIO · Publié avec GitHub Pages',
     },
 
