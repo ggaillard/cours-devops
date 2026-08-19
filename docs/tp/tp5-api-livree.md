@@ -14,6 +14,78 @@
 
 **Objectif** : faire parcourir à l'API toute la chaîne montée depuis la séance 7. C'est l'aboutissement du cours — plus aucune notion nouvelle, uniquement de l'assemblage.
 
+## Le modèle que vous livrez
+
+Six séances de conception aboutissent à ceci. C'est le diagramme que vous présenterez en soutenance — et celui qui doit accompagner votre dépôt.
+
+```mermaid
+classDiagram
+    class Client {
+        -String identifiant
+        -String nom
+        -String email
+        +changerEmail(String) void
+    }
+    class Adresse {
+        <<record>>
+        -String rue
+        -String codePostal
+    }
+    class Intervention {
+        <<abstract>>
+        -String reference
+        -StatutIntervention statut
+        #double heures
+        +cout()* double
+        +libelle()* String
+        +demarrer() void
+        +facturer() void
+    }
+    class StatutIntervention {
+        <<enumeration>>
+        PLANIFIEE
+        EN_COURS
+        TERMINEE
+        FACTUREE
+    }
+    class Depannage
+    class Maintenance
+    class Installation {
+        -double coutMateriel
+    }
+    class DepotInterventions {
+        <<interface>>
+        +enregistrer(Intervention) void
+        +parReference(String) Optional
+    }
+    class ServiceIntervention {
+        -DepotInterventions depot
+        +chiffreAffairesClient(String) double
+    }
+    class InterventionControleur {
+        -ServiceIntervention service
+    }
+    class InterventionReponse {
+        <<record>>
+    }
+
+    Client "1" *-- "1" Adresse
+    Client "1" --> "0..*" Intervention
+    Intervention --> StatutIntervention
+    Intervention <|-- Depannage
+    Intervention <|-- Maintenance
+    Intervention <|-- Installation
+    ServiceIntervention --> DepotInterventions
+    InterventionControleur --> ServiceIntervention
+    InterventionControleur ..> InterventionReponse
+```
+
+Trois propriétés se vérifient d'un coup d'œil, et forment une bonne grille de relecture avant de rendre :
+
+1. **Aucune flèche ne quitte le domaine** vers le contrôleur ou vers une base de données.
+2. **`ServiceIntervention` pointe vers l'interface**, jamais vers une implémentation.
+3. **Aucun attribut n'est public**, et `Intervention` n'expose aucun `setStatut`.
+
 ## Étape 1 — Vérifier le point de départ
 
 Sur votre dépôt `api-interventions`, contrôlez que `mvn verify` :

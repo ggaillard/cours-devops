@@ -378,6 +378,82 @@ Ce test s'exécute en quelques millisecondes, sans base de données, sans conten
 Si le service instanciait lui-même `DepotPostgres`, tester `chiffreAffairesClient` exigerait une vraie base : lente, à préparer, à nettoyer. Beaucoup d'équipes renoncent alors à tester leur logique métier. Le problème n'est pas le test, c'est la conception.
 :::
 
+## Où en est le modèle
+
+Le changement de cette séance est structurel : `Intervention` devient **abstraite**, et une couche de service apparaît.
+
+| Élément | Nature | Décision qu'il porte |
+| --- | --- | --- |
+| `Intervention` | devient `<<abstract>>` | Elle ne s'instancie plus : seuls ses trois types existent |
+| `Depannage`, `Maintenance`, `Installation` | classes | Chacune porte sa propre tarification |
+| `Facturable` | `<<interface>>` | Capacité, offerte aussi par des classes sans lien de parenté |
+| `DepotInterventions` | `<<interface>>` | Contrat d'accès aux données, exprimé en vocabulaire métier |
+| `ServiceIntervention` | classe | Orchestration ; ne dépend que de l'interface |
+
+```mermaid
+classDiagram
+    class Client {
+        -String identifiant
+        -String nom
+    }
+    class Facturable {
+        <<interface>>
+        +cout() double
+        +coutTTC() double
+    }
+    class Intervention {
+        <<abstract>>
+        -String reference
+        -StatutIntervention statut
+        #double heures
+        +cout()* double
+        +libelle()* String
+    }
+    class Depannage {
+        +cout() double
+        +libelle() String
+    }
+    class Maintenance {
+        +cout() double
+        +libelle() String
+    }
+    class Installation {
+        -double coutMateriel
+        +cout() double
+        +libelle() String
+    }
+    class DepotInterventions {
+        <<interface>>
+        +enregistrer(Intervention) void
+        +parReference(String) Optional
+        +parClient(String) List
+    }
+    class ServiceIntervention {
+        -DepotInterventions depot
+        +chiffreAffairesClient(String) double
+        +enregistrer(Intervention) Intervention
+    }
+
+    Client "1" --> "0..*" Intervention : concerne
+    Facturable <|.. Intervention : réalise
+    Intervention <|-- Depannage
+    Intervention <|-- Maintenance
+    Intervention <|-- Installation
+    ServiceIntervention --> DepotInterventions : dépend de
+    DepotInterventions ..> Intervention : manipule
+
+    style Facturable stroke:#16a34a,stroke-width:3px
+    style Depannage stroke:#16a34a,stroke-width:3px
+    style Maintenance stroke:#16a34a,stroke-width:3px
+    style Installation stroke:#16a34a,stroke-width:3px
+    style DepotInterventions stroke:#16a34a,stroke-width:3px
+    style ServiceIntervention stroke:#16a34a,stroke-width:3px
+```
+
+::: tip Ce que le diagramme dit et que le code cache
+`Intervention` est passée d'une classe ordinaire à une classe **abstraite** : sur le diagramme, c'est un stéréotype ajouté et deux opérations suivies d'une `*`. Dans le code, c'est le mot-clé `abstract` réparti sur quatre fichiers. La revue de conception se fait sur le diagramme en trente secondes ; sur le code, elle prend un quart d'heure.
+:::
+
 ---
 
 ## Auto-évaluation

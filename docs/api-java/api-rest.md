@@ -312,6 +312,68 @@ curl -i -X POST http://localhost:8080/api/interventions \
 
 Vérifiez systématiquement le **code de retour** (`-i`), pas seulement le corps.
 
+## Où en est le modèle
+
+Une couche entière s'ajoute — et le diagramme montre ce qui compte : **elle ne pénètre pas dans le domaine**.
+
+| Élément | Nature | Décision qu'il porte |
+| --- | --- | --- |
+| `InterventionControleur` | classe | Traduit HTTP ↔ objets, aucune règle métier |
+| `CreerInterventionRequete` | `<<record>>` | Ce que le client a le droit d'envoyer |
+| `InterventionReponse` | `<<record>>` | Ce que l'API accepte d'exposer |
+| `GestionnaireErreurs` | classe | Traduit les exceptions du domaine en codes HTTP |
+
+```mermaid
+classDiagram
+    direction LR
+
+    class InterventionControleur {
+        -ServiceIntervention service
+        +consulter(String) InterventionReponse
+        +creer(CreerInterventionRequete) ResponseEntity
+        +chiffreAffaires(String) double
+    }
+    class CreerInterventionRequete {
+        <<record>>
+        -String reference
+        -String type
+        -double heures
+    }
+    class InterventionReponse {
+        <<record>>
+        -String reference
+        -String libelle
+        -double cout
+        +depuis(Intervention)$ InterventionReponse
+    }
+    class GestionnaireErreurs {
+        +introuvable(Exception) ResponseEntity
+        +conflit(Exception) ResponseEntity
+        +validation(Exception) ResponseEntity
+    }
+    class ServiceIntervention {
+        -DepotInterventions depot
+    }
+    class Intervention {
+        <<abstract>>
+    }
+
+    InterventionControleur --> ServiceIntervention : délègue à
+    InterventionControleur ..> CreerInterventionRequete : reçoit
+    InterventionControleur ..> InterventionReponse : renvoie
+    InterventionReponse ..> Intervention : projette
+    GestionnaireErreurs ..> InterventionControleur : intercepte
+
+    style InterventionControleur stroke:#16a34a,stroke-width:3px
+    style CreerInterventionRequete stroke:#16a34a,stroke-width:3px
+    style InterventionReponse stroke:#16a34a,stroke-width:3px
+    style GestionnaireErreurs stroke:#16a34a,stroke-width:3px
+```
+
+Une flèche est absente, et c'est la plus importante : **rien ne part du domaine vers la couche API**. `Intervention` ignore l'existence du contrôleur, du JSON et de HTTP. C'est ce qui permettra, le jour venu, de remplacer REST par une file de messages ou une interface en ligne de commande sans toucher au métier.
+
+Notez aussi que `InterventionReponse` **projette** `Intervention` (trait pointillé, dépendance simple) au lieu de l'exposer : c'est le DTO qui découple le contrat public du modèle interne.
+
 ---
 
 ## Auto-évaluation

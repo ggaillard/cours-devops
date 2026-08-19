@@ -276,6 +276,43 @@ Ajoutez la dépendance dans `pom.xml` :
 
 Le `<scope>test</scope>` garantit que JUnit ne partira jamais en production.
 
+## Où en est le modèle
+
+Le domaine démarre. Deux classes, et déjà trois décisions de conception inscrites au diagramme.
+
+| Élément | Nature | Décision qu'il porte |
+| --- | --- | --- |
+| `Client` | classe | Entité : identité durable, état modifiable de façon contrôlée |
+| `Adresse` | `<<record>>` | Valeur : immuable, définie par son contenu |
+| `Client *-- Adresse` | composition | L'adresse n'existe pas sans son client |
+
+```mermaid
+classDiagram
+    class Client {
+        -String identifiant
+        -String nom
+        -String email
+        +changerEmail(String) void
+        +identifiant() String
+        +nom() String
+        +email() String
+    }
+    class Adresse {
+        <<record>>
+        -String rue
+        -String codePostal
+        -String ville
+        +enUneLigne() String
+    }
+
+    Client "1" *-- "1" Adresse : réside à
+
+    style Client stroke:#16a34a,stroke-width:3px
+    style Adresse stroke:#16a34a,stroke-width:3px
+```
+
+Les éléments **à bord vert épais** sont ceux introduits par la séance. À chaque séance, ce diagramme s'enrichira sans jamais être redessiné de zéro — c'est ainsi qu'un modèle vit dans un vrai projet : il **évolue en même temps que le code**, dans le même commit.
+
 ---
 
 ## Auto-évaluation

@@ -324,6 +324,54 @@ Si la couverture reste sous le seuil, revenez aux diagrammes plutôt qu'au rappo
 
 Le nom d'artefact inclut la version de Java : sans cela, les deux exécutions de la matrice se disputeraient le même nom et la seconde échouerait.
 
+## Où en est le modèle
+
+Les tests introduisent des classes qui n'iront **jamais en production**, mais qui font partie de la conception : c'est l'abstraction de la séance 28 qui les rend possibles.
+
+| Élément | Nature | Rôle |
+| --- | --- | --- |
+| `DepotEnMemoire` | implémentation de test | Remplace la base par une `Map` |
+| `Mock<DepotInterventions>` | doublure Mockito | Vérifie les interactions |
+| `@MockitoBean ServiceIntervention` | doublure Spring | Isole le contrôleur du métier |
+
+```mermaid
+classDiagram
+    class DepotInterventions {
+        <<interface>>
+        +enregistrer(Intervention) void
+        +parReference(String) Optional
+        +parClient(String) List
+    }
+    class DepotPostgres {
+        production
+    }
+    class DepotEnMemoire {
+        -Map donnees
+        tests
+    }
+    class ServiceIntervention {
+        -DepotInterventions depot
+    }
+    class InterventionControleur {
+        -ServiceIntervention service
+    }
+    class InterventionControleurTest {
+        -MockMvc mvc
+        -ServiceIntervention service
+    }
+
+    DepotInterventions <|.. DepotPostgres
+    DepotInterventions <|.. DepotEnMemoire
+    ServiceIntervention --> DepotInterventions
+    InterventionControleur --> ServiceIntervention
+    InterventionControleurTest ..> InterventionControleur : teste
+
+    style DepotEnMemoire stroke:#16a34a,stroke-width:3px
+    style InterventionControleurTest stroke:#16a34a,stroke-width:3px
+```
+
+Ce diagramme explique en une image pourquoi une conception soignée se teste facilement. `ServiceIntervention` pointe vers une **interface** : on y branche `DepotPostgres` en production et `DepotEnMemoire` dans les tests, sans changer une ligne du service. Si la flèche partait directement vers `DepotPostgres`, aucune substitution ne serait possible — et la couverture visée à la [séance 21](/qualite/couverture) deviendrait hors d'atteinte.
+
 ---
 
 ## Auto-évaluation

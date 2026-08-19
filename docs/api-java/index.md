@@ -15,6 +15,40 @@
 
 Les six séances qui suivent construisent une **API REST** de gestion d'interventions informatiques. L'objectif est double : manipuler pour de bon les concepts de la **programmation orientée objet**, et faire passer ce code applicatif dans toute la chaîne DevOps déjà montée — CI, tests, couverture, image conteneur, déploiement.
 
+## Ce que vous allez construire
+
+Avant d'écrire une ligne, voici la carte. Chaque paquetage sera bâti dans une séance, et le **diagramme de classes du domaine s'enrichira à chaque fois** — vous le retrouverez en fin de chaque page, sous le titre « Où en est le modèle ».
+
+```mermaid
+flowchart TB
+    subgraph api["fr.btssio.interventions.api — S29"]
+        ctrl["InterventionControleur"]
+        dto["CreerInterventionRequete<br/>InterventionReponse"]
+        err["GestionnaireErreurs"]
+    end
+
+    subgraph domaine["fr.btssio.interventions.domaine — S26 à S28"]
+        ent["Client · Adresse · Intervention<br/>Depannage · Maintenance · Installation"]
+        svc["ServiceIntervention"]
+        depot["DepotInterventions (interface)"]
+    end
+
+    subgraph infra["Infrastructure — S30 et S31"]
+        mem["DepotEnMemoire (tests)"]
+        pg["DepotPostgres (production)"]
+    end
+
+    ctrl --> svc
+    ctrl -.-> dto
+    err -.-> ctrl
+    svc --> depot
+    svc --> ent
+    depot -.-> mem
+    depot -.-> pg
+```
+
+Le sens des flèches est la seule chose à retenir pour l'instant : **tout pointe vers le domaine, le domaine ne pointe vers rien**. Ni le web, ni la base de données n'entrent dans le métier. C'est ce qui rendra l'application testable, et c'est la propriété que les six séances suivantes vont construire pas à pas.
+
 ## Pourquoi Java plutôt que TypeScript
 
 Les deux langages permettent d'écrire une API. Pour un cours dont l'objectif affiché est la **POO**, Java l'emporte sur quatre points :

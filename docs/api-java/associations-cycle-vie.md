@@ -251,6 +251,73 @@ class CycleVieInterventionTest {
 Comptez les flèches : chacune donne un test « ça marche ». Comptez les couples (état, événement) **absents** du diagramme : chacun donne un test « c'est refusé ». Le modèle vous dit exactement ce qu'il reste à couvrir — utile quand le seuil JaCoCo de la [séance 30](/api-java/tester-api) devra être atteint.
 :::
 
+## Où en est le modèle
+
+Le domaine prend forme : les objets se relient, et l'intervention acquiert un cycle de vie.
+
+| Élément | Nature | Décision qu'il porte |
+| --- | --- | --- |
+| `Intervention` | classe | L'entité centrale du métier |
+| `StatutIntervention` | `<<enumeration>>` | Les états possibles, et eux seuls |
+| `LigneMateriel` | classe | Composition : meurt avec son intervention |
+| `Technicien` | classe | Agrégation : survit à l'intervention |
+| `Client 1 --> 0..* Intervention` | association | Un client sans intervention reste valide |
+
+```mermaid
+classDiagram
+    class Client {
+        -String identifiant
+        -String nom
+        -String email
+        +changerEmail(String) void
+    }
+    class Adresse {
+        <<record>>
+        -String rue
+        -String codePostal
+        -String ville
+    }
+    class Intervention {
+        -String reference
+        -LocalDate date
+        -double heures
+        -StatutIntervention statut
+        +demarrer() void
+        +cloturer() void
+        +facturer() void
+    }
+    class StatutIntervention {
+        <<enumeration>>
+        PLANIFIEE
+        EN_COURS
+        SUSPENDUE
+        TERMINEE
+        FACTUREE
+        ANNULEE
+    }
+    class LigneMateriel {
+        -String designation
+        -int quantite
+    }
+    class Technicien {
+        -String matricule
+        -String nom
+    }
+
+    Client "1" *-- "1" Adresse : réside à
+    Client "1" --> "0..*" Intervention : concerne
+    Intervention "1" *-- "0..*" LigneMateriel : composition
+    Intervention "0..*" o-- "1..*" Technicien : agrégation
+    Intervention --> StatutIntervention : statut
+
+    style Intervention stroke:#16a34a,stroke-width:3px
+    style StatutIntervention stroke:#16a34a,stroke-width:3px
+    style LigneMateriel stroke:#16a34a,stroke-width:3px
+    style Technicien stroke:#16a34a,stroke-width:3px
+```
+
+Remarquez ce que le diagramme rend visible d'un coup d'œil : **le losange plein** vers `LigneMateriel` et **le losange creux** vers `Technicien`. Deux symboles, deux règles de suppression opposées — et une conversation possible avec le client sans lui montrer une ligne de code.
+
 ---
 
 ## Auto-évaluation
