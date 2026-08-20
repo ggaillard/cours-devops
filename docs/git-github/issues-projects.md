@@ -47,12 +47,12 @@ Un **Project** est un tableau (type Kanban) qui regroupe et priorise les Issues.
 Colonnes typiques :
 
 ```
-┌──────────┐  ┌───────────────┐  ┌──────────────┐  ┌─────────┐
+┌──────────┐  ┌───────────────┐  ┌──────────────┐  ┌──────────┐
 │  À faire │  │  En cours     │  │  En revue    │  │  Terminé │
-├──────────┤  ├───────────────┤  ├──────────────┤  ├─────────┤
+├──────────┤  ├───────────────┤  ├──────────────┤  ├──────────┤
 │ #14 Login│  │ #12 Bouton    │  │ #9 API stats │  │ #7 README│
 │ #15 Docs │  │               │  │              │  │          │
-└──────────┘  └───────────────┘  └──────────────┘  └─────────┘
+└──────────┘  └───────────────┘  └──────────────┘  └──────────┘
 ```
 
 On déplace les cartes au fil de l'avancement. Le Project peut se mettre à jour **automatiquement** (une Issue fermée passe en « Terminé »).
