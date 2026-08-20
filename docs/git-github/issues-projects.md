@@ -57,6 +57,14 @@ Colonnes typiques :
 
 On déplace les cartes au fil de l'avancement. Le Project peut se mettre à jour **automatiquement** (une Issue fermée passe en « Terminé »).
 
+::: tip Exemple en ligne
+Un tableau réel accompagne cette séance : **[Séance 4 — Issues & Projects (démo)](https://github.com/users/ggaillard/projects/7)**.
+
+On y retrouve le livrable attendu : cinq Issues étiquetées et assignées, réparties sur les colonnes `Todo`, `In progress`, `In review` et `Done`, deux champs personnalisés (`Priorité`, `Estimation`) et les trois automatisations décrites plus bas. Les tickets correspondants sont dans l'[onglet Issues du dépôt](https://github.com/ggaillard/cours-devops/issues).
+
+Regardez-le avant de construire le vôtre : c'est le même dépôt que celui du cours.
+:::
+
 ## Le lien avec le DevOps
 
 Cette planification n'est pas décorative :
