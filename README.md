@@ -99,10 +99,6 @@ Prérequis côté dépôt (à faire une fois) :
   CodeQL, Secret scanning + **Push protection**
 - **Settings → Branches** → règle de protection sur `main` (PR obligatoire, CI verte)
 
-## Historique
-
-L'ancienne version Jekyll de ce cours (Linux, Docker, GitLab CI — orientée SISR) reste
-consultable sur la branche `archive/jekyll-sisr` et le tag `v0-jekyll-sisr`.
 
 ## Licence
 
